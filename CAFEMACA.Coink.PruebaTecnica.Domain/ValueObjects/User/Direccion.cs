@@ -21,6 +21,7 @@ namespace CAFEMACA.Coink.PruebaTecnica.Domain.ValueObjects.User
     public class Direccion
     {
         public string DireccionName { get; set; } = string.Empty;
+        public string IdMunicipio { get; set; } = default;
         public Municipio MunicipioAsoc { get; set; } = default;
     }
 }

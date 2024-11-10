@@ -27,7 +27,7 @@ namespace CAFEMACA.Coink.PruebaTecnica.Domain.Common.Errors.Location
         #endregion
 
         #region Bussines Errors
-        public static DomainError NotFound(int id) => new("Municipio.NotFound", $"The Municipio with Id '{id}' was not found");
+        public static DomainError NotFound(string id) => new("Municipio.NotFound", $"The Municipio with Id '{id}' was not found");
         #endregion
     }
 }

@@ -27,7 +27,7 @@ namespace CAFEMACA.Coink.PruebaTecnica.Domain.Common.Errors.User
         #endregion
 
         #region Bussines Errors
-        public static DomainError NotFound(int id) => new("Usuario.NotFound", $"The Usuario with Id '{id}' was not found");
+        public static DomainError NotFound(string id) => new("Usuario.NotFound", $"The Usuario with Id '{id}' was not found");
         #endregion
     }
 }

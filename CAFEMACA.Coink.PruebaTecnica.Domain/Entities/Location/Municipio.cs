@@ -23,7 +23,7 @@ namespace CAFEMACA.Coink.PruebaTecnica.Domain.Entities.Location
     {
         public string Name { get; set; } = string.Empty;
 
-        public required string IdDepartamento { get; set; }
+        public string IdDepartamento { get; set; }
 
         public Departamento DepartamentoAsoc { get; set; }
 

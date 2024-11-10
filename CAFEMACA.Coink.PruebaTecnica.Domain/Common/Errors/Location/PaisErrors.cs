@@ -25,7 +25,7 @@ namespace CAFEMACA.Coink.PruebaTecnica.Domain.Common.Errors.Location
         #endregion
 
         #region Bussines Errors
-        public static DomainError NotFound(int id) => new("Pais.NotFound", $"The Pais with Id '{id}' was not found");
+        public static DomainError NotFound(string id) => new("Pais.NotFound", $"The Pais with Id '{id}' was not found");
         #endregion
     }
 }

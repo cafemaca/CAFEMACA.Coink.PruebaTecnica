@@ -1,10 +1,10 @@
 // ****************************************************************
 //  Assembly         : CAFEMACA.Coink.PruebaTecnica.Data
 //  Author           :  cmalagoncmalagon
-//  Created          : 04-02-2024
+//  Created          : 11-10-2024
 //
 //  Last Modified By : Carlos Fernando Malagón Cano
-//  Last Modified On : 09-20-2024
+//  Last Modified On : 11-10-2024
 //  ****************************************************************
 //  <copyright file="DependecyInjection.cs"
 //      company="Cafemaca - CAFEMACA Colombia">
@@ -13,11 +13,17 @@
 //
 
 using CAFEMACA.Coink.PruebaTecnica.Application.Common.Abstractions.Interfaces.Repositories;
+using CAFEMACA.Coink.PruebaTecnica.Application.Common.Abstractions.Interfaces.Repositories.Location;
+using CAFEMACA.Coink.PruebaTecnica.Application.Common.Abstractions.Interfaces.Repositories.User;
 using CAFEMACA.Coink.PruebaTecnica.Application.Common.Abstractions.Interfaces.Repository;
+using CAFEMACA.Coink.PruebaTecnica.Data.Cache.Location;
 using CAFEMACA.Coink.PruebaTecnica.Data.Cache.Players;
+using CAFEMACA.Coink.PruebaTecnica.Data.Cache.User;
 using CAFEMACA.Coink.PruebaTecnica.Data.Repositories;
 using CAFEMACA.Coink.PruebaTecnica.Data.Repositories.Audit;
+using CAFEMACA.Coink.PruebaTecnica.Data.Repositories.Location;
 using CAFEMACA.Coink.PruebaTecnica.Data.Repositories.Players;
+using CAFEMACA.Coink.PruebaTecnica.Data.Repositories.User;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -39,6 +45,18 @@ namespace CAFEMACA.Coink.PruebaTecnica.Data
             //Decorate pattern for MemoryCache.
             services.AddScoped<PlayerRepository>();
             services.AddTransient<IPlayerRepository, CachedMemoryPlayerRepository>();
+
+            services.AddScoped<PaisRepository>();
+            services.AddTransient<IPaisRepository, CachedMemoryPaisRepository>();
+
+            services.AddScoped<DepartamentoRepository>();
+            services.AddTransient<IDepartamentoRepository, CachedMemoryDepartamentoRepository>();
+
+            services.AddScoped<MunicipioRepository>();
+            services.AddTransient<IMunicipioRepository, CachedMemoryMunicipioRepository>();
+
+            services.AddScoped<UsuarioRepository>();
+            services.AddTransient<IUsuarioRepository, CachedMemoryUsuarioRepository>();
 
             services.AddScoped<IAuditTrailRepository, AuditTrailRepository>();
             return services;

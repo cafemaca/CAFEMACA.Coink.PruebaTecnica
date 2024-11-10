@@ -24,12 +24,12 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Abstractions.Interface
     {
         Task<Result<IEnumerable<MunicipioResponse>, DomainError>> SelectAllMunicipios(CancellationToken cancellationToken);
         Task<Result<PagedList<MunicipioResponse>, DomainError>> SelectAllMunicipios(SearchQueryParameters searchQueryParameters, CancellationToken cancellationToken);
-        Task<Result<MunicipioResponse?, DomainError>> SelectMunicipioByIdAsync(int id, CancellationToken cancellationToken);
+        Task<Result<MunicipioResponse?, DomainError>> SelectMunicipioByIdAsync(string id, CancellationToken cancellationToken);
 
         Task<Result<MunicipioResponse?, IEnumerable<DomainError>>> CreateMunicipioAsync(MunicipioRequest playerRequest, CancellationToken cancellationToken);
 
-        Task<Result<bool, DomainError>> DeleteMunicipioAsync(int id, CancellationToken cancellationToken);
+        Task<Result<bool, DomainError>> DeleteMunicipioAsync(string id, CancellationToken cancellationToken);
 
-        Task<Result<bool, IEnumerable<DomainError>>> UpdateAsync(int id, MunicipioRequest playerRequest, CancellationToken cancellationToken);
+        Task<Result<bool, IEnumerable<DomainError>>> UpdateAsync(string id, MunicipioRequest playerRequest, CancellationToken cancellationToken);
     }
 }

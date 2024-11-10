@@ -23,7 +23,7 @@ namespace CAFEMACA.Coink.PruebaTecnica.Domain.Entities.Location
     {
         public string Name { get; set; } = string.Empty;
 
-        public required string IdPais { get; set; }
+        public string IdPais { get; set; }
 
         public Pais PaisAsoc {  get; set; }
 

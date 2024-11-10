@@ -22,10 +22,10 @@ namespace CAFEMACA.Coink.PruebaTecnica.Domain.Entities.User
     /// </summary>
     public class Usuario : Entity<string>, IAuditableEntity
     {
-        public required string Nombre { get; set; } = string.Empty;
-        public required string Telefono { get; set; } = string.Empty;
+        public string Nombre { get; set; } = string.Empty;
+        public string Telefono { get; set; } = string.Empty;
 
-        public required Direccion Direccion { get; set; }
+        public Direccion Direccion { get; set; }
 
         #region Auditable Entity
         public DateTime CreatedAtUtc { get; set; }

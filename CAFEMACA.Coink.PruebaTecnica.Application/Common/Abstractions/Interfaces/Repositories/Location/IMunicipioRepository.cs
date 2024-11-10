@@ -6,7 +6,7 @@
 //  Last Modified By : Carlos Fernando Malagón Cano
 //  Last Modified On : 11-10-2024
 //  ****************************************************************
-//  <copyright file="IUsuario.cs"
+//  <copyright file="IMunicipio.cs"
 //      company="Cafemaca - CAFEMACA Colombia">
 //      Cafemaca - CAFEMACA Colombia
 //  </copyright>
@@ -14,11 +14,11 @@
 
 using CAFEMACA.Coink.PruebaTecnica.Application.Common.Abstractions.Interfaces.Repository;
 using CAFEMACA.Coink.PruebaTecnica.Data.Common.Pagining;
-using CAFEMACA.Coink.PruebaTecnica.Domain.Entities.User;
+using CAFEMACA.Coink.PruebaTecnica.Domain.Entities.Location;
 
-namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Abstractions.Interfaces.Repositories.User
+namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Abstractions.Interfaces.Repositories.Location
 {
-    public interface IUsuario : IRepository<Usuario, string>
+    public interface IMunicipioRepository : IRepository<Municipio, string>
     {
         // add methods that are specific to the Player entity
         // e.g Task<Player> GetByEmail(string email);
@@ -26,6 +26,6 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Abstractions.Interface
         // e.g Task<Player> GetByEmailAndPassword(string email, string password);
         //Task<PagedList<Player>> GetItems(int pageIndex, int pageSize);
 
-        Task<PagedList<Usuario>> GetAllAsync(ISpecificationQuery<Usuario> specification, int pageIndex, int pageSize, CancellationToken cancellationToken);
+        Task<PagedList<Municipio>> GetAllAsync(ISpecificationQuery<Municipio> specification, int pageIndex, int pageSize, CancellationToken cancellationToken);
     }
 }

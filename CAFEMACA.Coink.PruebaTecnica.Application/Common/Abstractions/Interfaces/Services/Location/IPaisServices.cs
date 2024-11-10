@@ -24,12 +24,12 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Abstractions.Interface
     {
         Task<Result<IEnumerable<PaisResponse>, DomainError>> SelectAllPaiss(CancellationToken cancellationToken);
         Task<Result<PagedList<PaisResponse>, DomainError>> SelectAllPaiss(SearchQueryParameters searchQueryParameters, CancellationToken cancellationToken);
-        Task<Result<PaisResponse?, DomainError>> SelectPaisByIdAsync(int id, CancellationToken cancellationToken);
+        Task<Result<PaisResponse?, DomainError>> SelectPaisByIdAsync(string id, CancellationToken cancellationToken);
 
         Task<Result<PaisResponse?, IEnumerable<DomainError>>> CreatePaisAsync(PaisRequest playerRequest, CancellationToken cancellationToken);
 
-        Task<Result<bool, DomainError>> DeletePaisAsync(int id, CancellationToken cancellationToken);
+        Task<Result<bool, DomainError>> DeletePaisAsync(string id, CancellationToken cancellationToken);
 
-        Task<Result<bool, IEnumerable<DomainError>>> UpdateAsync(int id, PaisRequest playerRequest, CancellationToken cancellationToken);
+        Task<Result<bool, IEnumerable<DomainError>>> UpdateAsync(string id, PaisRequest playerRequest, CancellationToken cancellationToken);
     }
 }
