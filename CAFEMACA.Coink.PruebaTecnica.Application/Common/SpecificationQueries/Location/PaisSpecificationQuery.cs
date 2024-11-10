@@ -6,22 +6,25 @@
 //  Last Modified By : Carlos Fernando Malagón Cano
 //  Last Modified On : 11-10-2024
 //  ****************************************************************
-//  <copyright file="DepartamentoResponse.cs"
+//  <copyright file="PaisSpecificationQuery.cs"
 //      company="Cafemaca - CAFEMACA Colombia">
 //      Cafemaca - CAFEMACA Colombia
 //  </copyright>
 //
 
 using CAFEMACA.Coink.PruebaTecnica.Domain.Entities.Location;
+using System.Linq.Expressions;
 
-namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Dtos.Location
+namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.SpecificationQueries.Location
 {
-    public class DepartamentoResponse
+    public class PaisSpecificationQuery : BaseSpecificationQuery<Pais>
     {
-        public required string Id { get; set; } = string.Empty;
-
-        public string Name { get; set; } = string.Empty;
-
-        public Pais PaisAsoc { get; set; }
+        public PaisSpecificationQuery() : base()
+        {
+        }
+        public PaisSpecificationQuery(Expression<Func<Pais, bool>> criteria, List<SpecificationSort<Pais>> orderby) : base(criteria)
+        {
+            OrderBy = orderby;
+        }
     }
 }
