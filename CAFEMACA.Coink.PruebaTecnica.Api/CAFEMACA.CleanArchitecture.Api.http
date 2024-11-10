@@ -1,0 +1,21 @@
+﻿@Api_HostAddress = https://localhost:7188
+
+GET {{Api_HostAddress}}/api/players
+
+###
+
+GET {{Api_HostAddress}}/api/players/qw
+
+###
+
+PUT {{Api_HostAddress}}/api/players/0
+Content-Type: application/json
+
+{
+  "id": 0,
+  "name": "Name11",
+  "password": "Password11$",
+  "email": "Name11@hotmail.com"
+}
+
+###

@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Common\CustomEntities\**" />
+    <Compile Remove="Common\Exceptions\**" />
+    <Compile Remove="Common\Mapping\**" />
+    <Compile Remove="Common\QueryFilter\**" />
+    <EmbeddedResource Remove="Common\CustomEntities\**" />
+    <EmbeddedResource Remove="Common\Exceptions\**" />
+    <EmbeddedResource Remove="Common\Mapping\**" />
+    <EmbeddedResource Remove="Common\QueryFilter\**" />
+    <None Remove="Common\CustomEntities\**" />
+    <None Remove="Common\Exceptions\**" />
+    <None Remove="Common\Mapping\**" />
+    <None Remove="Common\QueryFilter\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\Enumerations\" />
+    <Folder Include="Common\Static\" />
+    <Folder Include="UseCases\Audit\Commands\" />
+    <Folder Include="UseCases\Audit\Events\" />
+    <Folder Include="UseCases\Audit\Queries\" />
+    <Folder Include="UseCases\Players\Commands\" />
+    <Folder Include="UseCases\Players\Events\" />
+    <Folder Include="UseCases\Players\Queries\" />
+    <Folder Include="UseCases\Users\Commands\" />
+    <Folder Include="UseCases\Users\Events\" />
+    <Folder Include="UseCases\Users\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CAFEMACA.Coink.PruebaTecnica.Domain\CAFEMACA.Coink.PruebaTecnica.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
