@@ -18,9 +18,9 @@ using FluentValidation;
 
 namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Validators.Location
 {
-    public class PaisRequestValidator : AbstractValidator<PaisRequest>
+    public class PaisCreateRequestValidator : AbstractValidator<PaisCreateRequest>
     {
-        public PaisRequestValidator()
+        public PaisCreateRequestValidator()
         {
             RuleFor(x => x.Id).NotNull().NotEmpty().WithMessage(PaisErrors.RequiredId.ErrorMessage).WithErrorCode(PaisErrors.RequiredId.ErrorCode)
                 .Length(0, 100).WithMessage(PaisErrors.ValidId.ErrorMessage).WithErrorCode(PaisErrors.ValidId.ErrorCode);

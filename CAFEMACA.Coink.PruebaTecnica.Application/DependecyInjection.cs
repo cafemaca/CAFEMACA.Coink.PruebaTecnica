@@ -37,7 +37,9 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application
             #region Validators
             services.AddTransient<IValidator<PlayerRequest>, PlayerRequestValidator>();
 
-            services.AddTransient<IValidator<PaisRequest>, PaisRequestValidator>();
+            services.AddTransient<IValidator<PaisCreateRequest>, PaisCreateRequestValidator>();
+            services.AddTransient<IValidator<PaisUpdateRequest>, PaisUpdateRequestValidator>();
+
             services.AddTransient<IValidator<DepartamentoRequest>, DepartamentoRequestValidator>();
             services.AddTransient<IValidator<MunicipioRequest>, MunicipioRequestValidator>();
             services.AddTransient<IValidator<UsuarioRequest>, UsuarioRequestValidator>();

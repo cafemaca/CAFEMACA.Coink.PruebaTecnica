@@ -37,23 +37,26 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IPaisRepository _paisRepository;
-        private readonly IValidator<PaisRequest> _validator;
+        private readonly IValidator<PaisCreateRequest> _createValidator;
+        private readonly IValidator<PaisUpdateRequest> _updateValidator;
 
         public PaisServices(ILogger<PaisServices> logger
             , IMapper mapper
             , IUnitOfWork unitOfWork
             , IPaisRepository paisRepository
-            , IValidator<PaisRequest> validator)
+            , IValidator<PaisCreateRequest> createValidator
+            , IValidator<PaisUpdateRequest> updateValidator)
         {
             _mapper = mapper;
             _unitOfWork = unitOfWork;
             _paisRepository = paisRepository ?? throw new ArgumentNullException(nameof(paisRepository));
-            _validator = validator;
+            _createValidator = createValidator;
+            _updateValidator = updateValidator;
         }
 
-        public async Task<Result<PaisResponse?, IEnumerable<DomainError>>> CreatePaisAsync(PaisRequest paisRequest, CancellationToken cancellationToken)
+        public async Task<Result<PaisResponse?, IEnumerable<DomainError>>> CreatePaisAsync(PaisCreateRequest paisRequest, CancellationToken cancellationToken)
         {
-            ValidationResult result = await _validator.ValidateAsync(paisRequest, cancellationToken).ConfigureAwait(false);
+            ValidationResult result = await _createValidator.ValidateAsync(paisRequest, cancellationToken).ConfigureAwait(false);
             if (result.IsValid)
             {
                 Pais pais = _mapper.Map<Pais>(paisRequest);
@@ -85,13 +88,13 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
             }
         }
 
-        public async Task<Result<IEnumerable<PaisResponse>, DomainError>> SelectAllPaiss(CancellationToken cancellationToken)
+        public async Task<Result<IEnumerable<PaisResponse>, DomainError>> SelectAllPaises(CancellationToken cancellationToken)
         {
             var paiss = (await _paisRepository.GetAllAsync(cancellationToken).ConfigureAwait(false)).ToList();
             return _mapper.Map<List<PaisResponse>>(paiss);
         }
 
-        public async Task<Result<PagedList<PaisResponse>, DomainError>> SelectAllPaiss(SearchQueryParameters searchQueryParameters, CancellationToken cancellationToken)
+        public async Task<Result<PagedList<PaisResponse>, DomainError>> SelectAllPaises(SearchQueryParameters searchQueryParameters, CancellationToken cancellationToken)
         {
             #region Search filters
             List<ColumnFilter> columnFilters = CustomExpressionFilter<Pais>.GetColumnFilters(searchQueryParameters.ColumnFilters);
@@ -136,15 +139,15 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
             }
         }
 
-        public async Task<Result<bool, IEnumerable<DomainError>>> UpdateAsync(string id, PaisRequest paisRequest, CancellationToken cancellationToken)
+        public async Task<Result<bool, IEnumerable<DomainError>>> UpdateAsync(string id, PaisUpdateRequest paisRequest, CancellationToken cancellationToken)
         {
-            ValidationResult result = await _validator.ValidateAsync(paisRequest, cancellationToken).ConfigureAwait(false);
+            ValidationResult result = await _updateValidator.ValidateAsync(paisRequest, cancellationToken).ConfigureAwait(false);
             if (result.IsValid)
             {
                 Pais? pais = await _paisRepository.GetAsync(id, cancellationToken).ConfigureAwait(false);
                 if (pais != null)
                 {
-                    _mapper.Map<PaisRequest, Pais>(paisRequest, pais);
+                    _mapper.Map<PaisUpdateRequest, Pais>(paisRequest, pais);
                     pais.Id = id;
 
                     await _paisRepository.UpdateAsync(pais, cancellationToken).ConfigureAwait(false);

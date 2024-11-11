@@ -15,6 +15,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using CAFEMACA.Coink.PruebaTecnica.Domain.Entities.User;
+using CAFEMACA.Coink.PruebaTecnica.Domain.ValueObjects.User;
 
 namespace CAFEMACA.Coink.PruebaTecnica.Data.Common.EntityConfigurations.User
 {
@@ -31,12 +32,17 @@ namespace CAFEMACA.Coink.PruebaTecnica.Data.Common.EntityConfigurations.User
                 .HasMaxLength(100)
                 .IsRequired();
 
+            /*
             builder.Property(p => p.Direccion.DireccionName)
                 .HasMaxLength(10)
                 .IsRequired();
 
             builder.Property(p => p.Direccion.IdMunicipio)
                 .HasMaxLength(6)
+                .IsRequired();
+            */
+            builder.OwnsOne(x => x.Direccion)
+                .Property(x => x.DireccionName)
                 .IsRequired();
 
             builder.Property(p => p.CreatedAtUtc)

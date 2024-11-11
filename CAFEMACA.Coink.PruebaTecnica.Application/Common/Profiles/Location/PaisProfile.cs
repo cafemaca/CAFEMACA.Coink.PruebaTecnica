@@ -22,8 +22,11 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Profiles.Location
     {
         public PaisProfile()
         {
-            CreateMap<PaisRequest, Pais>()
-                       .ForMember(dest => dest.Id, src => src.MapFrom(x => x.Name))
+            CreateMap<PaisCreateRequest, Pais>()
+                       .ForMember(dest => dest.Id, src => src.MapFrom(x => x.Id))
+                       .ForMember(dest => dest.Name, src => src.MapFrom(x => x.Name));
+
+            CreateMap<PaisUpdateRequest, Pais>()
                        .ForMember(dest => dest.Name, src => src.MapFrom(x => x.Name));
 
             CreateMap<Pais, PaisResponse>()

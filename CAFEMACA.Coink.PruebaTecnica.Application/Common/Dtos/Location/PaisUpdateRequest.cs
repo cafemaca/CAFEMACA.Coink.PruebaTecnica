@@ -14,9 +14,8 @@
 
 namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Dtos.Location
 {
-    public class PaisRequest
+    public class PaisUpdateRequest
     {
-        public string Id { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
     }
 }
