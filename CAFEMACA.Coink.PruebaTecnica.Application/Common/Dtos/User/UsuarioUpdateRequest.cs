@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Dtos.User
 {
-    public class UsuarioRequest
+    public class UsuarioUpdateRequest
     {
         public required string Id { get; set; } = string.Empty;
         public required string Nombre { get; set; } = string.Empty;

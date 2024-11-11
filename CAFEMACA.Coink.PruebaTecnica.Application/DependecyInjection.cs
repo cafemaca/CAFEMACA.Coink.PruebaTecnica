@@ -14,6 +14,7 @@
 
 using CAFEMACA.Coink.PruebaTecnica.Application.Common.Abstractions.Interfaces.Services;
 using CAFEMACA.Coink.PruebaTecnica.Application.Common.Abstractions.Interfaces.Services.Location;
+using CAFEMACA.Coink.PruebaTecnica.Application.Common.Abstractions.Interfaces.Services.User;
 using CAFEMACA.Coink.PruebaTecnica.Application.Common.Dtos.Location;
 using CAFEMACA.Coink.PruebaTecnica.Application.Common.Dtos.User;
 using CAFEMACA.Coink.PruebaTecnica.Application.Common.Profiles;
@@ -42,7 +43,8 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application
             services.AddTransient<IValidator<MunicipioCreateRequest>, MunicipioCreateRequestValidator>();
             services.AddTransient<IValidator<MunicipioUpdateRequest>, MunicipioUpdateRequestValidator>();
 
-            services.AddTransient<IValidator<UsuarioRequest>, UsuarioRequestValidator>();
+            services.AddTransient<IValidator<UsuarioCreateRequest>, UsuarioCreateRequestValidator>();
+            services.AddTransient<IValidator<UsuarioUpdateRequest>, UsuarioUpdateRequestValidator>();
             #endregion
 
             services.AddAutoMapper(Assembly.GetAssembly(typeof(MappingProfile)));
@@ -51,6 +53,8 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application
             services.AddScoped<IPaisServices, PaisServices>();
             services.AddScoped<IDepartamentoServices, DepartamentoServices>();
             services.AddScoped<IMunicipioServices, MunicipioServices>();
+
+            services.AddScoped<IUsuarioServices, UsuarioServices>();
 
             services.AddScoped<IAuditTrailServices, AuditTrailServices>();
 

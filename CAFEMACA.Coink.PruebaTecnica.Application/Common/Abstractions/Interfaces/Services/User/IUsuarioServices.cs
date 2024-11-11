@@ -26,10 +26,10 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Abstractions.Interface
         Task<Result<PagedList<UsuarioResponse>, DomainError>> SelectAllUsuarios(SearchQueryParameters searchQueryParameters, CancellationToken cancellationToken);
         Task<Result<UsuarioResponse?, DomainError>> SelectUsuarioByIdAsync(string id, CancellationToken cancellationToken);
 
-        Task<Result<UsuarioResponse?, IEnumerable<DomainError>>> CreateUsuarioAsync(UsuarioRequest playerRequest, CancellationToken cancellationToken);
+        Task<Result<UsuarioResponse?, IEnumerable<DomainError>>> CreateUsuarioAsync(UsuarioCreateRequest playerRequest, CancellationToken cancellationToken);
 
         Task<Result<bool, DomainError>> DeleteUsuarioAsync(string id, CancellationToken cancellationToken);
 
-        Task<Result<bool, IEnumerable<DomainError>>> UpdateAsync(string id, UsuarioRequest playerRequest, CancellationToken cancellationToken);
+        Task<Result<bool, IEnumerable<DomainError>>> UpdateAsync(string id, UsuarioUpdateRequest playerRequest, CancellationToken cancellationToken);
     }
 }

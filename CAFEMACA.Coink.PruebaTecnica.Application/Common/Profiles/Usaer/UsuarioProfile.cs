@@ -22,7 +22,7 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Profiles.Usaer
     {
         public UsuarioProfile()
         {
-            CreateMap<UsuarioRequest, Usuario>()
+            CreateMap<UsuarioCreateRequest, Usuario>()
                        .ForMember(dest => dest.Id, src => src.MapFrom(x => x.Id))
                        .ForMember(dest => dest.Nombre, src => src.MapFrom(x => x.Nombre))
                        .ForMember(dest => dest.Telefono, src => src.MapFrom(x => x.Telefono))

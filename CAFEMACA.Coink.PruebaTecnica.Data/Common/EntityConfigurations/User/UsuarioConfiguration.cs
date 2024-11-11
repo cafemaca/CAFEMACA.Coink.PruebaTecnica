@@ -32,17 +32,11 @@ namespace CAFEMACA.Coink.PruebaTecnica.Data.Common.EntityConfigurations.User
                 .HasMaxLength(100)
                 .IsRequired();
 
-            /*
-            builder.Property(p => p.Direccion.DireccionName)
-                .HasMaxLength(10)
+            builder.OwnsOne(p => p.Direccion)
+                .Property(p => p.DireccionName)
                 .IsRequired();
-
-            builder.Property(p => p.Direccion.IdMunicipio)
-                .HasMaxLength(6)
-                .IsRequired();
-            */
-            builder.OwnsOne(x => x.Direccion)
-                .Property(x => x.DireccionName)
+            builder.OwnsOne(p => p.Direccion)
+                .Property(p => p.IdMunicipio)
                 .IsRequired();
 
             builder.Property(p => p.CreatedAtUtc)

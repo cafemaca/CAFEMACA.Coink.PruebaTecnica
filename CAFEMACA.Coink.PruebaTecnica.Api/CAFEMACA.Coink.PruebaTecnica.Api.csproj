@@ -47,7 +47,6 @@
 
   <ItemGroup>
     <Folder Include="Common\Attributes\" />
-    <Folder Include="Controllers\User\" />
   </ItemGroup>
 
 </Project>

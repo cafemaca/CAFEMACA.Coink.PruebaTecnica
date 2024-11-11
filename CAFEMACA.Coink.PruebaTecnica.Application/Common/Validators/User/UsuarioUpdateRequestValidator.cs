@@ -18,9 +18,9 @@ using FluentValidation;
 
 namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Validators.User
 {
-    public class UsuarioRequestValidator : AbstractValidator<UsuarioRequest>
+    public class UsuarioUpdateRequestValidator : AbstractValidator<UsuarioUpdateRequest>
     {
-        public UsuarioRequestValidator()
+        public UsuarioUpdateRequestValidator()
         {
             RuleFor(x => x.Id).NotNull().NotEmpty().WithMessage(UsuarioErrors.RequiredId.ErrorMessage).WithErrorCode(UsuarioErrors.RequiredId.ErrorCode)
                 .Length(0, 100).WithMessage(UsuarioErrors.ValidId.ErrorMessage).WithErrorCode(UsuarioErrors.ValidId.ErrorCode);

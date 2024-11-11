@@ -33,7 +33,7 @@ namespace CAFEMACA.Coink.PruebaTecnica.Api.Controllers.Location
     [ApiVersion("2")]
     [ApiController]
     [Route("api/v{v:apiVersion}/[controller]")]
-    public class PaisesController : ControllerBase // ControllerBase is a base class for MVC controller without view support.
+    public class UsuariosController : ControllerBase // ControllerBase is a base class for MVC controller without view support.
     {
         private readonly IPaisServices _paisServices;
         private readonly IOptions<ApplicationOptions> _applicationOptions;
@@ -42,7 +42,7 @@ namespace CAFEMACA.Coink.PruebaTecnica.Api.Controllers.Location
         /// 
         /// </summary>
         /// <param name="paisServices"></param>
-        public PaisesController(IPaisServices paisServices, IOptions<ApplicationOptions> applicationOptions)
+        public UsuariosController(IPaisServices paisServices, IOptions<ApplicationOptions> applicationOptions)
         {
             _paisServices = paisServices;
             _applicationOptions = applicationOptions;
