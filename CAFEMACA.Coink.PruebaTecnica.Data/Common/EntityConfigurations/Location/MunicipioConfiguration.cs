@@ -31,7 +31,7 @@ namespace CAFEMACA.Coink.PruebaTecnica.Data.Common.EntityConfigurations.Location
                 .HasMaxLength(100)
                 .IsRequired();
 
-            builder.Property(p => p.IdDepartamento)
+            builder.Property(p => p.DepartamentoId)
                 .HasMaxLength(4)
                 .IsRequired();
 

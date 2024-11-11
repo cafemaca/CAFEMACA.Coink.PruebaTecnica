@@ -25,16 +25,16 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Profiles.Location
             CreateMap<MunicipioCreateRequest, Municipio>()
                        .ForMember(dest => dest.Id, src => src.MapFrom(x => x.Id))
                        .ForMember(dest => dest.Name, src => src.MapFrom(x => x.Name))
-                       .ForMember(dest => dest.IdDepartamento, src => src.MapFrom(x => x.IdDepartamento));
+                       .ForMember(dest => dest.DepartamentoId, src => src.MapFrom(x => x.DepartamentoId));
 
             CreateMap<MunicipioUpdateRequest, Municipio>()
                        .ForMember(dest => dest.Name, src => src.MapFrom(x => x.Name))
-                       .ForMember(dest => dest.IdDepartamento, src => src.MapFrom(x => x.IdDepartamento));
+                       .ForMember(dest => dest.DepartamentoId, src => src.MapFrom(x => x.DepartamentoId));
 
             CreateMap<Municipio, MunicipioResponse>()
                        .ForMember(dest => dest.Id, src => src.MapFrom(x => x.Id))
                        .ForMember(dest => dest.Name, src => src.MapFrom(x => x.Name))
-                       .ForMember(dest => dest.DepartamentoAsoc, src => src.MapFrom(x => x.DepartamentoAsoc));
+                       .ForMember(dest => dest.Departamento, src => src.MapFrom(x => x.Departamento));
 
         }
     }

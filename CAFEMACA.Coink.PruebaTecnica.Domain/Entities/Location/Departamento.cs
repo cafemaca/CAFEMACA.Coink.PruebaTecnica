@@ -26,6 +26,8 @@ namespace CAFEMACA.Coink.PruebaTecnica.Domain.Entities.Location
         public string PaisId { get; set; }
         public Pais Pais { get; set; } = null;
 
+        public ICollection<Municipio> Municipios { get; set; } = new List<Municipio>();
+
         #region Auditable Entity
         public DateTime CreatedAtUtc { get; set; }
         public DateTime? UpdatedAtUtc { get; set; }

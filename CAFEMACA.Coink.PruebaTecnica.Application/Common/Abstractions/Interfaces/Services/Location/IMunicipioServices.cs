@@ -30,6 +30,6 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Abstractions.Interface
 
         Task<Result<bool, DomainError>> DeleteMunicipioAsync(string id, CancellationToken cancellationToken);
 
-        Task<Result<bool, IEnumerable<DomainError>>> UpdateAsync(string id, MunicipioCreateRequest municipioRequest, CancellationToken cancellationToken);
+        Task<Result<bool, IEnumerable<DomainError>>> UpdateAsync(string id, MunicipioUpdateRequest municipioRequest, CancellationToken cancellationToken);
     }
 }

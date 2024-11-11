@@ -20,6 +20,6 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Dtos.Location
 
         public string Name { get; set; } = string.Empty;
 
-        public required string IdDepartamento { get; set; }
+        public required string DepartamentoId { get; set; }
     }
 }

@@ -29,7 +29,7 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Validators.Location
             RuleFor(x => x.Name).NotNull().NotEmpty().WithMessage(MunicipioErrors.RequiredName.ErrorMessage).WithErrorCode(MunicipioErrors.RequiredName.ErrorCode)
                 .Length(0, 100).WithMessage(MunicipioErrors.ValidName.ErrorMessage).WithErrorCode(MunicipioErrors.ValidName.ErrorCode);
 
-            RuleFor(x => x.IdDepartamento).NotNull().NotEmpty().WithMessage(MunicipioErrors.RequiredIdDepartamento.ErrorMessage).WithErrorCode(MunicipioErrors.RequiredIdDepartamento.ErrorCode)
+            RuleFor(x => x.DepartamentoId).NotNull().NotEmpty().WithMessage(MunicipioErrors.RequiredIdDepartamento.ErrorMessage).WithErrorCode(MunicipioErrors.RequiredIdDepartamento.ErrorCode)
                 .Length(0, 100).WithMessage(MunicipioErrors.ValidIdDepartamento.ErrorMessage).WithErrorCode(MunicipioErrors.ValidIdDepartamento.ErrorCode);
         }
     }

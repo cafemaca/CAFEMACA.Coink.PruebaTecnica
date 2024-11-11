@@ -33,6 +33,12 @@ namespace CAFEMACA.Coink.PruebaTecnica.Data.Common.EntityConfigurations.Location
             .HasMaxLength(100)
             .IsRequired();
 
+            builder
+                .HasMany(d => d.Municipios)
+                .WithOne(d => d.Departamento)
+                .HasForeignKey(d => d.DepartamentoId)
+                .IsRequired();
+
             builder.Property(p => p.CreatedAtUtc)
                 .IsRequired();
 
