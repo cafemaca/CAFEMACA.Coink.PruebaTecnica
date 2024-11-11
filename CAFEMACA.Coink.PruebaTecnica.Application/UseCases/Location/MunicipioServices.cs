@@ -37,13 +37,13 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMunicipioRepository _paisRepository;
-        private readonly IValidator<MunicipioRequest> _validator;
+        private readonly IValidator<MunicipioCreateRequest> _validator;
 
         public MunicipioServices(ILogger<MunicipioServices> logger
             , IMapper mapper
             , IUnitOfWork unitOfWork
             , IMunicipioRepository paisRepository
-            , IValidator<MunicipioRequest> validator)
+            , IValidator<MunicipioCreateRequest> validator)
         {
             _mapper = mapper;
             _unitOfWork = unitOfWork;
@@ -51,7 +51,7 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
             _validator = validator;
         }
 
-        public async Task<Result<MunicipioResponse?, IEnumerable<DomainError>>> CreateMunicipioAsync(MunicipioRequest paisRequest, CancellationToken cancellationToken)
+        public async Task<Result<MunicipioResponse?, IEnumerable<DomainError>>> CreateMunicipioAsync(MunicipioCreateRequest paisRequest, CancellationToken cancellationToken)
         {
             ValidationResult result = await _validator.ValidateAsync(paisRequest, cancellationToken).ConfigureAwait(false);
             if (result.IsValid)
@@ -136,7 +136,7 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
             }
         }
 
-        public async Task<Result<bool, IEnumerable<DomainError>>> UpdateAsync(string id, MunicipioRequest paisRequest, CancellationToken cancellationToken)
+        public async Task<Result<bool, IEnumerable<DomainError>>> UpdateAsync(string id, MunicipioCreateRequest paisRequest, CancellationToken cancellationToken)
         {
             ValidationResult result = await _validator.ValidateAsync(paisRequest, cancellationToken).ConfigureAwait(false);
             if (result.IsValid)
@@ -144,7 +144,7 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
                 Municipio? pais = await _paisRepository.GetAsync(id, cancellationToken).ConfigureAwait(false);
                 if (pais != null)
                 {
-                    _mapper.Map<MunicipioRequest, Municipio>(paisRequest, pais);
+                    _mapper.Map<MunicipioCreateRequest, Municipio>(paisRequest, pais);
                     pais.Id = id;
 
                     await _paisRepository.UpdateAsync(pais, cancellationToken).ConfigureAwait(false);

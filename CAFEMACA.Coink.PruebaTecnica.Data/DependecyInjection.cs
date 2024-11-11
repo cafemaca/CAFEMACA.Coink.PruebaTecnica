@@ -17,12 +17,10 @@ using CAFEMACA.Coink.PruebaTecnica.Application.Common.Abstractions.Interfaces.Re
 using CAFEMACA.Coink.PruebaTecnica.Application.Common.Abstractions.Interfaces.Repositories.User;
 using CAFEMACA.Coink.PruebaTecnica.Application.Common.Abstractions.Interfaces.Repository;
 using CAFEMACA.Coink.PruebaTecnica.Data.Cache.Location;
-using CAFEMACA.Coink.PruebaTecnica.Data.Cache.Players;
 using CAFEMACA.Coink.PruebaTecnica.Data.Cache.User;
 using CAFEMACA.Coink.PruebaTecnica.Data.Repositories;
 using CAFEMACA.Coink.PruebaTecnica.Data.Repositories.Audit;
 using CAFEMACA.Coink.PruebaTecnica.Data.Repositories.Location;
-using CAFEMACA.Coink.PruebaTecnica.Data.Repositories.Players;
 using CAFEMACA.Coink.PruebaTecnica.Data.Repositories.User;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,9 +41,6 @@ namespace CAFEMACA.Coink.PruebaTecnica.Data
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             //Decorate pattern for MemoryCache.
-            services.AddScoped<PlayerRepository>();
-            services.AddTransient<IPlayerRepository, CachedMemoryPlayerRepository>();
-
             services.AddScoped<PaisRepository>();
             services.AddTransient<IPaisRepository, CachedMemoryPaisRepository>();
 

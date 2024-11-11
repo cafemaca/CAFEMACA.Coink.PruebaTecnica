@@ -22,15 +22,23 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Profiles.Location
     {
         public DepartamentoProfile()
         {
-            CreateMap<DepartamentoRequest, Departamento>()
+            CreateMap<DepartamentoCreateRequest, Departamento>()
                        .ForMember(dest => dest.Id, src => src.MapFrom(x => x.Id))
                        .ForMember(dest => dest.Name, src => src.MapFrom(x => x.Name))
-                       .ForMember(dest => dest.IdPais, src => src.MapFrom(x => x.IdPais));
+                       .ForMember(dest => dest.PaisId, src => src.MapFrom(x => x.PaisId));
+
+            CreateMap<DepartamentoUpdateRequest, Departamento>()
+                       .ForMember(dest => dest.Name, src => src.MapFrom(x => x.Name));
 
             CreateMap<Departamento, DepartamentoResponse>()
                        .ForMember(dest => dest.Id, src => src.MapFrom(x => x.Id))
                        .ForMember(dest => dest.Name, src => src.MapFrom(x => x.Name))
-                       .ForMember(dest => dest.PaisAsoc, src => src.MapFrom(x => x.PaisAsoc));
+                       .ForMember(dest => dest.Pais, src => src.MapFrom(x => x.Pais));
+
+            CreateMap<Departamento, DepartamentoCreateResponse>()
+                       .ForMember(dest => dest.Id, src => src.MapFrom(x => x.Id))
+                       .ForMember(dest => dest.Name, src => src.MapFrom(x => x.Name))
+                       .ForMember(dest => dest.PaisId, src => src.MapFrom(x => x.PaisId));
 
         }
     }

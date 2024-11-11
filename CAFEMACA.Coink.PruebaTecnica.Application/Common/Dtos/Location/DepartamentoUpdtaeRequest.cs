@@ -1,23 +1,21 @@
 ﻿// ****************************************************************
 //  Assembly         : CAFEMACA.Coink.PruebaTecnica.Application
 //  Author           :  Carlos Fernando Malagón Cano
-//  Created          : 04-12-2024
+//  Created          : 11-10-2024
 //
 //  Last Modified By : Carlos Fernando Malagón Cano
-//  Last Modified On : 04-12-2024
+//  Last Modified On : 11-10-2024
 //  ****************************************************************
-//  <copyright file="PlayerRequest.cs"
+//  <copyright file="DepartamentoRequest.cs"
 //      company="Cafemaca - CAFEMACA Colombia">
 //      Cafemaca - CAFEMACA Colombia
 //  </copyright>
 //
 
-namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Dtos.Players
+namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Dtos.Location
 {
-    public record PlayerRequest
+    public class DepartamentoUpdateRequest
     {
-        public string Name { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
-        public string Email { get; set; } = string.Empty;
+        public required string Name { get; set; } = string.Empty;
     }
 }

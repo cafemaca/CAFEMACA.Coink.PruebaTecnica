@@ -6,7 +6,7 @@
 //  Last Modified By : Carlos Fernando Malagón Cano
 //  Last Modified On : 11-10-2024
 //  ****************************************************************
-//  <copyright file="DepartamentoRequest.cs"
+//  <copyright file="MunicipioRequest.cs"
 //      company="Cafemaca - CAFEMACA Colombia">
 //      Cafemaca - CAFEMACA Colombia
 //  </copyright>
@@ -14,11 +14,12 @@
 
 namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Dtos.Location
 {
-    public class DepartamentoRequest
+    public class MunicipioCreateRequest
     {
-        public required string Id { get; set; }
-        public required string Name { get; set; } = string.Empty;
+        public string Id { get; set; } = string.Empty;
 
-        public required string IdPais { get; set; }
+        public string Name { get; set; } = string.Empty;
+
+        public required string IdDepartamento { get; set; }
     }
 }

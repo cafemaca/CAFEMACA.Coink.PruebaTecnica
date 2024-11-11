@@ -36,32 +36,36 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IDepartamentoRepository _paisRepository;
-        private readonly IValidator<DepartamentoRequest> _validator;
+        private readonly IDepartamentoRepository _departamentoRepository;
+        private readonly IValidator<DepartamentoCreateRequest> _createValidator;
+        private readonly IValidator<DepartamentoUpdateRequest> _updateValidator;
 
         public DepartamentoServices(ILogger<DepartamentoServices> logger
             , IMapper mapper
             , IUnitOfWork unitOfWork
             , IDepartamentoRepository paisRepository
-            , IValidator<DepartamentoRequest> validator)
+            , IValidator<DepartamentoCreateRequest> createValidator
+            , IValidator<DepartamentoUpdateRequest> updateValidator
+            )
         {
             _mapper = mapper;
             _unitOfWork = unitOfWork;
-            _paisRepository = paisRepository ?? throw new ArgumentNullException(nameof(paisRepository));
-            _validator = validator;
+            _departamentoRepository = paisRepository ?? throw new ArgumentNullException(nameof(paisRepository));
+            _createValidator = createValidator;
+            _updateValidator = updateValidator;
         }
 
-        public async Task<Result<DepartamentoResponse?, IEnumerable<DomainError>>> CreateDepartamentoAsync(DepartamentoRequest paisRequest, CancellationToken cancellationToken)
+        public async Task<Result<DepartamentoCreateResponse?, IEnumerable<DomainError>>> CreateDepartamentoAsync(DepartamentoCreateRequest departamentoRequest, CancellationToken cancellationToken)
         {
-            ValidationResult result = await _validator.ValidateAsync(paisRequest, cancellationToken).ConfigureAwait(false);
+            ValidationResult result = await _createValidator.ValidateAsync(departamentoRequest, cancellationToken).ConfigureAwait(false);
             if (result.IsValid)
             {
-                Departamento pais = _mapper.Map<Departamento>(paisRequest);
+                Departamento departamento = _mapper.Map<Departamento>(departamentoRequest);
 
-                await _paisRepository.InsertAsync(pais, cancellationToken).ConfigureAwait(false);
+                await _departamentoRepository.InsertAsync(departamento, cancellationToken).ConfigureAwait(false);
                 await _unitOfWork.SaveChangesAsync(cancellationToken).ConfigureAwait(false); // save the changes to the database
 
-                return _mapper.Map<DepartamentoResponse>(pais);
+                return _mapper.Map<DepartamentoCreateResponse>(departamento);
             }
             else
             {
@@ -71,10 +75,10 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
 
         public async Task<Result<bool, DomainError>> DeleteDepartamentoAsync(string id, CancellationToken cancellationToken)
         {
-            Departamento? pais = await _paisRepository.GetAsync(id, cancellationToken).ConfigureAwait(false);
-            if (pais != null)
+            Departamento? departamento = await _departamentoRepository.GetAsync(id, cancellationToken).ConfigureAwait(false);
+            if (departamento != null)
             {
-                await _paisRepository.DeleteAsync(id, cancellationToken).ConfigureAwait(false);
+                await _departamentoRepository.DeleteAsync(id, cancellationToken).ConfigureAwait(false);
                 await _unitOfWork.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
                 return true;
@@ -87,8 +91,8 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
 
         public async Task<Result<IEnumerable<DepartamentoResponse>, DomainError>> SelectAllDepartamentos(CancellationToken cancellationToken)
         {
-            var paiss = (await _paisRepository.GetAllAsync(cancellationToken).ConfigureAwait(false)).ToList();
-            return _mapper.Map<List<DepartamentoResponse>>(paiss);
+            var departamentos = (await _departamentoRepository.GetAllAsync(cancellationToken).ConfigureAwait(false)).ToList();
+            return _mapper.Map<List<DepartamentoResponse>>(departamentos);
         }
 
         public async Task<Result<PagedList<DepartamentoResponse>, DomainError>> SelectAllDepartamentos(SearchQueryParameters searchQueryParameters, CancellationToken cancellationToken)
@@ -119,16 +123,18 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
                 sorts = CustomExpressionFilter<Departamento>.CustomSort(columnSorting);
             }
 
-            PagedList<Departamento> paiss = (await _paisRepository.GetAllAsync(new DepartamentoSpecificationQuery(filters, sorts), searchQueryParameters.PageIndex, searchQueryParameters.PageSize, cancellationToken));
-            return _mapper.Map<PagedList<DepartamentoResponse>>(paiss);
+            PagedList<Departamento> departamentos = (await _departamentoRepository.GetAllAsync(new DepartamentoSpecificationQuery(filters, sorts), searchQueryParameters.PageIndex, searchQueryParameters.PageSize, cancellationToken));
+            return _mapper.Map<PagedList<DepartamentoResponse>>(departamentos);
         }
 
         public async Task<Result<DepartamentoResponse?, DomainError>> SelectDepartamentoByIdAsync(string id, CancellationToken cancellationToken)
         {
-            Departamento? pais = await _paisRepository.GetAsync(id, cancellationToken).ConfigureAwait(false);
-            if (pais != null)
+            DepartamentoSpecificationQuery departamentoSpecificationQuery = new DepartamentoSpecificationQuery(id);
+            //Departamento? departamento = await _departamentoRepository.GetAsync(id, cancellationToken).ConfigureAwait(false);
+            Departamento? departamento = await _departamentoRepository.FirstAsync(departamentoSpecificationQuery, cancellationToken).ConfigureAwait(false);
+            if (departamento != null)
             {
-                return _mapper.Map<DepartamentoResponse>(pais);
+                return _mapper.Map<DepartamentoResponse>(departamento);
             }
             else
             {
@@ -136,18 +142,18 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
             }
         }
 
-        public async Task<Result<bool, IEnumerable<DomainError>>> UpdateAsync(string id, DepartamentoRequest paisRequest, CancellationToken cancellationToken)
+        public async Task<Result<bool, IEnumerable<DomainError>>> UpdateAsync(string id, DepartamentoUpdateRequest departamentoRequest, CancellationToken cancellationToken)
         {
-            ValidationResult result = await _validator.ValidateAsync(paisRequest, cancellationToken).ConfigureAwait(false);
+            ValidationResult result = await _updateValidator.ValidateAsync(departamentoRequest, cancellationToken).ConfigureAwait(false);
             if (result.IsValid)
             {
-                Departamento? pais = await _paisRepository.GetAsync(id, cancellationToken).ConfigureAwait(false);
-                if (pais != null)
+                Departamento? departamento = await _departamentoRepository.GetAsync(id, cancellationToken).ConfigureAwait(false);
+                if (departamento != null)
                 {
-                    _mapper.Map<DepartamentoRequest, Departamento>(paisRequest, pais);
-                    pais.Id = id;
+                    _mapper.Map<DepartamentoUpdateRequest, Departamento>(departamentoRequest, departamento);
+                    departamento.Id = id;
 
-                    await _paisRepository.UpdateAsync(pais, cancellationToken).ConfigureAwait(false);
+                    await _departamentoRepository.UpdateAsync(departamento, cancellationToken).ConfigureAwait(false);
                     await _unitOfWork.SaveChangesAsync(cancellationToken);
 
                     return true;

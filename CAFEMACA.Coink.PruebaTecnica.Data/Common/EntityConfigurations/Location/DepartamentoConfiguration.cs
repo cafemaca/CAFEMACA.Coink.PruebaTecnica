@@ -15,6 +15,8 @@
 using CAFEMACA.Coink.PruebaTecnica.Domain.Entities.Location;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.Extensions.Hosting;
+using System.Reflection.Emit;
 
 namespace CAFEMACA.Coink.PruebaTecnica.Data.Common.EntityConfigurations.Location
 {
@@ -28,12 +30,8 @@ namespace CAFEMACA.Coink.PruebaTecnica.Data.Common.EntityConfigurations.Location
                 .IsRequired();
 
             builder.Property(p => p.Name)
-                .HasMaxLength(100)
-                .IsRequired();
-
-            builder.Property(p => p.IdPais)
-                .HasMaxLength(6)
-                .IsRequired();
+            .HasMaxLength(100)
+            .IsRequired();
 
             builder.Property(p => p.CreatedAtUtc)
                 .IsRequired();

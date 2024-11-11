@@ -19,9 +19,9 @@ using FluentValidation;
 
 namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Validators.Location
 {
-    public class MunicipioRequestValidator : AbstractValidator<MunicipioRequest>
+    public class MunicipioCreateRequestValidator : AbstractValidator<MunicipioCreateRequest>
     {
-        public MunicipioRequestValidator()
+        public MunicipioCreateRequestValidator()
         {
             RuleFor(x => x.Id).NotNull().NotEmpty().WithMessage(MunicipioErrors.RequiredId.ErrorMessage).WithErrorCode(MunicipioErrors.RequiredId.ErrorCode)
                 .Length(0, 100).WithMessage(MunicipioErrors.ValidId.ErrorMessage).WithErrorCode(MunicipioErrors.ValidId.ErrorCode);

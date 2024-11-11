@@ -26,10 +26,10 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Abstractions.Interface
         Task<Result<PagedList<PaisResponse>, DomainError>> SelectAllPaises(SearchQueryParameters searchQueryParameters, CancellationToken cancellationToken);
         Task<Result<PaisResponse?, DomainError>> SelectPaisByIdAsync(string id, CancellationToken cancellationToken);
 
-        Task<Result<PaisResponse?, IEnumerable<DomainError>>> CreatePaisAsync(PaisCreateRequest playerRequest, CancellationToken cancellationToken);
+        Task<Result<PaisResponse?, IEnumerable<DomainError>>> CreatePaisAsync(PaisCreateRequest paisRequest, CancellationToken cancellationToken);
 
         Task<Result<bool, DomainError>> DeletePaisAsync(string id, CancellationToken cancellationToken);
 
-        Task<Result<bool, IEnumerable<DomainError>>> UpdateAsync(string id, PaisUpdateRequest playerRequest, CancellationToken cancellationToken);
+        Task<Result<bool, IEnumerable<DomainError>>> UpdateAsync(string id, PaisUpdateRequest paisRequest, CancellationToken cancellationToken);
     }
 }

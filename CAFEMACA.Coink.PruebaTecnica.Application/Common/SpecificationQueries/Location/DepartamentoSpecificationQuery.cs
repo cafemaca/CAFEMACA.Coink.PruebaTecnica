@@ -22,6 +22,11 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.SpecificationQueries.L
         public DepartamentoSpecificationQuery() : base()
         {
         }
+        public DepartamentoSpecificationQuery(string Id)
+            : base(b => b.Id == Id)
+        {
+            AddInclude(b => b.Pais);
+        }
         public DepartamentoSpecificationQuery(Expression<Func<Departamento, bool>> criteria, List<SpecificationSort<Departamento>> orderby) : base(criteria)
         {
             OrderBy = orderby;

@@ -23,6 +23,8 @@ namespace CAFEMACA.Coink.PruebaTecnica.Domain.Entities.Location
     {
         public string Name { get; set; } = string.Empty;
 
+        public ICollection<Departamento> Departamentos { get; set; } = new List<Departamento>();
+
         #region Auditable Entity
         public DateTime CreatedAtUtc { get; set; }
         public DateTime? UpdatedAtUtc { get; set; }

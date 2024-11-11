@@ -30,9 +30,6 @@
     <Folder Include="UseCases\Location\Commands\" />
     <Folder Include="UseCases\Location\Events\" />
     <Folder Include="UseCases\Location\Queries\" />
-    <Folder Include="UseCases\Players\Commands\" />
-    <Folder Include="UseCases\Players\Events\" />
-    <Folder Include="UseCases\Players\Queries\" />
     <Folder Include="UseCases\Users\Commands\" />
     <Folder Include="UseCases\Users\Events\" />
     <Folder Include="UseCases\Users\Queries\" />

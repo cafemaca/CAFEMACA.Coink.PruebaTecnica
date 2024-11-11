@@ -6,22 +6,18 @@
 //  Last Modified By : Carlos Fernando Malagón Cano
 //  Last Modified On : 11-10-2024
 //  ****************************************************************
-//  <copyright file="DepartamentoResponse.cs"
+//  <copyright file="MunicipioRequest.cs"
 //      company="Cafemaca - CAFEMACA Colombia">
 //      Cafemaca - CAFEMACA Colombia
 //  </copyright>
 //
 
-using CAFEMACA.Coink.PruebaTecnica.Domain.Entities.Location;
-
 namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Dtos.Location
 {
-    public class DepartamentoResponse
+    public class MunicipioUpdateRequest
     {
-        public required string Id { get; set; } = string.Empty;
-
         public string Name { get; set; } = string.Empty;
 
-        public PaisResponse Pais { get; set; }
+        public required string IdDepartamento { get; set; }
     }
 }

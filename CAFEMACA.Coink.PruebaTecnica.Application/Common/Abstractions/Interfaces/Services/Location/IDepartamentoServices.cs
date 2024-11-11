@@ -26,10 +26,10 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Abstractions.Interface
         Task<Result<PagedList<DepartamentoResponse>, DomainError>> SelectAllDepartamentos(SearchQueryParameters searchQueryParameters, CancellationToken cancellationToken);
         Task<Result<DepartamentoResponse?, DomainError>> SelectDepartamentoByIdAsync(string id, CancellationToken cancellationToken);
 
-        Task<Result<DepartamentoResponse?, IEnumerable<DomainError>>> CreateDepartamentoAsync(DepartamentoRequest playerRequest, CancellationToken cancellationToken);
+        Task<Result<DepartamentoCreateResponse?, IEnumerable<DomainError>>> CreateDepartamentoAsync(DepartamentoCreateRequest departamentoRequest, CancellationToken cancellationToken);
 
         Task<Result<bool, DomainError>> DeleteDepartamentoAsync(string id, CancellationToken cancellationToken);
 
-        Task<Result<bool, IEnumerable<DomainError>>> UpdateAsync(string id, DepartamentoRequest playerRequest, CancellationToken cancellationToken);
+        Task<Result<bool, IEnumerable<DomainError>>> UpdateAsync(string id, DepartamentoUpdateRequest departamentoRequest, CancellationToken cancellationToken);
     }
 }

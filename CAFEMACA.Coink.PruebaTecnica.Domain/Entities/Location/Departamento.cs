@@ -23,9 +23,8 @@ namespace CAFEMACA.Coink.PruebaTecnica.Domain.Entities.Location
     {
         public string Name { get; set; } = string.Empty;
 
-        public string IdPais { get; set; }
-
-        public Pais PaisAsoc {  get; set; }
+        public string PaisId { get; set; }
+        public Pais Pais { get; set; } = null;
 
         #region Auditable Entity
         public DateTime CreatedAtUtc { get; set; }
