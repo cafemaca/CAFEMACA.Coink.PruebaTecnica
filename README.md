@@ -23,22 +23,12 @@ Se debe implementar servicios web api rest para la administración de las entida
 * Una vez descargado el código, sedebe proceder a abrir la solución CAFEMACA.Coink.PruebaTecnica.sln
 * abierta la solución, se debe modificar el string de conexión a la base de datos deseada. esto se realiza en el archivo appsettings.json y la entrada CAFEMACA.Coink.PruebaTecnicaDbConn
 
-### Executing program
+### Ejecución del servicio Web Api Rest
 
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
+* Desde Visual Studio 2022 o Visual Studio Code se puede realizar su ejecución
+* Como en el desarrollo de esta prueba técnica se ha utilizado Entity Framework, la solución ha implementado que si se ejecuta por primera vez, este crea la basde de datos y sus respectivas tablas. Es decir, no es necesario previamente ejecurtar script de creación.
 
-## Help
-
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
-
-## Authors
+## Autores
 
 Desarrollador
 
@@ -46,21 +36,14 @@ Carlos Fernando Malagón Cano
 [cmalagon@uniandes.edu.co](mailto:cmalagon@uniandes.edu.co)
 LinkedIn: [https://www.linkedin.com/in/cmalagon/](https://www.linkedin.com/in/cmalagon/)
 
-## Version History
+## Licencia
 
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
-* 0.1
-    * Initial Release
-
-## License
-
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+Esta solución es parte del cumplimiento de la prueba técnica propuesta para el cargo de Desarrollador BackEnd propuesto por Coink.
+Por ende, está prohibida su utilización y reproducción para otros fines diferentes al planteado en esta prueba técnica.
 
 ## Conocimientos
 
-Para el desarrollo de este proyecto se utiliz162
+Para el desarrollo de este proyecto se utilizó:
 * La solución se plantea bajo el manejo del concepto de CLEAN ARCHITECTURE, utilizando un template de Visual Studio desarrollado por el propio autor de este desarrollo de la prueba técnica.
 * Manejo de Patreones de Desarrollo como: Options Pattern, Result Pattern, Repository Patter, UnitOfWork Pattern
 * Como buenas prácticas igualmente se maneja procesos como: Health Check, Logging con Serilog
