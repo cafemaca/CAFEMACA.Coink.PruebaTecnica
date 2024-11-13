@@ -9,9 +9,13 @@ La prueba técnica consite en la evaluación de dos partes: Conocimientos de Bas
 Se debe implementar servicios web api rest para la administración de las entidades: Pais, Departamento, Municipio y Usuario.
 
 ## Presentación
+Para la presentación de la solución se tienen los requerimeintos solicitados:
+
+### Base de Datos
+La base de datos construída para la solución a nivel de tablas, se presenta el siguiente modelo enitdad/relación:
+![Modelo E/R](/images/CoinkDB.png)
 
 ### Dependencias
-
 * .NET Framework 8.0.
 * Entity Framework 8.0
 * Npgsql.EntityFrameworkCore.PostgreSQL 8.0
