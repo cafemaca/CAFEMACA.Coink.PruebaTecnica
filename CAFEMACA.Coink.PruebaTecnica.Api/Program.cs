@@ -38,7 +38,7 @@ builder.Services.RegisterMiddleware();
 builder.Services.RegisterApiVersion();
 builder.Services.RegisterCORS(builder.Configuration);
 builder.Services.RegisterSwagger();
-builder.Services.RegisterDB();
+builder.Services.RegisterDB(builder.Configuration);
 builder.Services.RegisterDependency(builder.Configuration);
 builder.Services.RegisterLogging(builder.Configuration);
 builder.Services.RegisterHealthCheck(builder.Configuration);

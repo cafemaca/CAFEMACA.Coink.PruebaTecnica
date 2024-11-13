@@ -22,7 +22,7 @@ namespace CAFEMACA.Coink.PruebaTecnica.Data.Common.EntityConfigurations.Location
     {
         public void Configure(EntityTypeBuilder<Pais> builder)
         {
-
+            builder.ToTable(nameof(Pais));
             builder.Property(x => x.Id)
                 .HasMaxLength(2)
                 .IsRequired();

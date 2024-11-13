@@ -22,9 +22,10 @@ namespace CAFEMACA.Coink.PruebaTecnica.Data.Common.EntityConfigurations.Location
     {
         public void Configure(EntityTypeBuilder<Municipio> builder)
         {
+            builder.ToTable(nameof(Municipio));
 
             builder.Property(x => x.Id)
-                .HasMaxLength(6)
+                .HasMaxLength(12)
                 .IsRequired();
 
             builder.Property(p => p.Name)

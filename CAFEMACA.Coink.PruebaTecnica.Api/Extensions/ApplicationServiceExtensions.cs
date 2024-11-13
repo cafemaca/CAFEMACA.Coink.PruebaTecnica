@@ -46,13 +46,13 @@ namespace CAFEMACA.Coink.PruebaTecnica.Api.Extensions
             services.AddExceptionHandler<GlobalExceptionHandler>();
         }
 
-        public static void RegisterDB(this IServiceCollection services)
+        public static void RegisterDB(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<CafemacaDbContext>((provider, options) =>
             {
                 var interceptor = provider.GetRequiredService<AuditableInterceptor>();
 
-                options.UseInMemoryDatabase("Players")
+                options.UseNpgsql(configuration.GetConnectionString(connectionStringValue))
                 .AddInterceptors(interceptor);
             }
             );
@@ -212,7 +212,7 @@ namespace CAFEMACA.Coink.PruebaTecnica.Api.Extensions
         public static void RegisterHealthCheck(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddHealthChecks()
-            .AddSqlServer(configuration.GetConnectionString(connectionStringValue), healthQuery: "select 1", name: "SQL Server", failureStatus: HealthStatus.Unhealthy, tags: new[] { "Feedback", "Database" })
+            .AddNpgSql(configuration.GetConnectionString(connectionStringValue), healthQuery: "select 1", name: "SQL Server", failureStatus: HealthStatus.Unhealthy, tags: new[] { "Feedback", "Database" })
             .AddCheck<RemoteHealthCheck>("Remote endpoints Health Check", failureStatus: HealthStatus.Unhealthy)
             .AddCheck<MemoryHealthCheck>($"CAFEMACA Service Memory Check", failureStatus: HealthStatus.Unhealthy, tags: new[] { titleSolution })
             .AddUrlGroup(new Uri("https://www.google.com"), name: "google", failureStatus: HealthStatus.Unhealthy);

@@ -15,8 +15,6 @@
 using CAFEMACA.Coink.PruebaTecnica.Domain.Entities.Location;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.Extensions.Hosting;
-using System.Reflection.Emit;
 
 namespace CAFEMACA.Coink.PruebaTecnica.Data.Common.EntityConfigurations.Location
 {
@@ -24,6 +22,8 @@ namespace CAFEMACA.Coink.PruebaTecnica.Data.Common.EntityConfigurations.Location
     {
         public void Configure(EntityTypeBuilder<Departamento> builder)
         {
+
+            builder.ToTable(nameof(Departamento));
 
             builder.Property(x => x.Id)
                 .HasMaxLength(4)
