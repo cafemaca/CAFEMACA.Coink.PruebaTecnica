@@ -14,10 +14,13 @@
 
 using CAFEMACA.Coink.PruebaTecnica.Application.Common.Abstractions.Interfaces.Services;
 using CAFEMACA.Coink.PruebaTecnica.Data.Common.EntityConfigurations;
+using CAFEMACA.Coink.PruebaTecnica.Data.Common.EntityConfigurations.Location;
+using CAFEMACA.Coink.PruebaTecnica.Data.Common.EntityConfigurations.User;
 using CAFEMACA.Coink.PruebaTecnica.Domain.Common.Enums;
 using CAFEMACA.Coink.PruebaTecnica.Domain.Common.Interfaces;
 using CAFEMACA.Coink.PruebaTecnica.Domain.Entities.Audit;
-using CAFEMACA.Coink.PruebaTecnica.Domain.Entities.Player;
+using CAFEMACA.Coink.PruebaTecnica.Domain.Entities.Location;
+using CAFEMACA.Coink.PruebaTecnica.Domain.Entities.User;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
@@ -32,7 +35,11 @@ namespace CAFEMACA.Coink.PruebaTecnica.Data.Context
         private readonly ICurrentSessionProvider _currentSessionProvider;
 
         #region Definicion de los diferentes DbSet
-        public DbSet<Player> Players { get; set; } = default!;
+        public DbSet<Pais> Paises { get; set; } = default!;
+        public DbSet<Departamento> Departamentos { get; set; } = default!;
+        public DbSet<Municipio> Municipios { get; set; } = default!;
+        public DbSet<Usuario> Usuarios { get; set; } = default!;
+
         public DbSet<AuditTrail> AuditTrails { get; set; } = default!;
         #endregion
 
@@ -47,21 +54,13 @@ namespace CAFEMACA.Coink.PruebaTecnica.Data.Context
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfiguration(new PlayerConfiguration());
+            modelBuilder.ApplyConfiguration(new PaisConfiguration());
+            modelBuilder.ApplyConfiguration(new DepartamentoConfiguration());
+            modelBuilder.ApplyConfiguration(new MunicipioConfiguration());
+            modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
+
             modelBuilder.ApplyConfiguration(new AuditTrailConfiguration());
 
-            // Seed database with 100 items.
-            var items = Enumerable.Range(1, 100).Select(index => new Player
-            {
-                Id = index,
-                Name = $"Name{index}",
-                Password = $"Password{index}$",
-                Email = $"Name{index}@hotmail.com",
-
-                CreatedAtUtc = DateTime.UtcNow,
-                CreatedBy = "Carlos Fernando Malagón Cano"
-            }).ToList();
-            modelBuilder.Entity<Player>().HasData(items);
         }
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
         {

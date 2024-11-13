@@ -1,0 +1,6 @@
+services:
+  cafemaca.coink.pruebatecnica.api:
+    image: ${DOCKER_REGISTRY-}cafemacacoinkpruebatecnicaapi
+    build:
+      context: .
+      dockerfile: CAFEMACA.Coink.PruebaTecnica.Api/Dockerfile
