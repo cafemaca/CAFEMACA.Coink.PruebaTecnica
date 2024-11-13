@@ -60,6 +60,7 @@ Por ende, está prohibida su utilización y reproducción para otros fines difer
 
 Para el desarrollo de este proyecto se utilizó:
 * La solución se plantea bajo el manejo del concepto de CLEAN ARCHITECTURE, utilizando un template de Visual Studio desarrollado por el propio autor de este desarrollo de la prueba técnica.
-* Manejo de Patreones de Desarrollo como: Options Pattern, Result Pattern, Repository Patter, UnitOfWork Pattern
+* Manejo de Patrones de Desarrollo como: Options Pattern, Result Pattern, Repository Patter, UnitOfWork Pattern
+* Los diferentes servicios implementados poseen el manejo básico de MemoryCache para un mejor tiempo de respuesta de los mismos
 * Como buenas prácticas igualmente se maneja procesos como: Health Check, Logging con Serilog
 * Como motor de base de datos se utiliza POSTGRES
