@@ -18,11 +18,17 @@ using CAFEMACA.Coink.PruebaTecnica.Domain.Entities.User;
 
 namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Profiles.Usaer
 {
-    public class UsuarioProfile : Profile
+    public class DireccionProfile : Profile
     {
-        public UsuarioProfile()
+        public DireccionProfile()
         {
             CreateMap<UsuarioCreateRequest, Usuario>()
+                       .ForMember(dest => dest.Id, src => src.MapFrom(x => x.Id))
+                       .ForMember(dest => dest.Nombre, src => src.MapFrom(x => x.Nombre))
+                       .ForMember(dest => dest.Telefono, src => src.MapFrom(x => x.Telefono))
+                       .ForMember(dest => dest.Direccion, src => src.MapFrom(x => x.Direccion));
+
+            CreateMap<UsuarioUpdateRequest, Usuario>()
                        .ForMember(dest => dest.Id, src => src.MapFrom(x => x.Id))
                        .ForMember(dest => dest.Nombre, src => src.MapFrom(x => x.Nombre))
                        .ForMember(dest => dest.Telefono, src => src.MapFrom(x => x.Telefono))

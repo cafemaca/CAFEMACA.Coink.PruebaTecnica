@@ -13,6 +13,6 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Dtos.User
         public required string Nombre { get; set; } = string.Empty;
         public required string Telefono { get; set; } = string.Empty;
 
-        public required Direccion Direccion { get; set; }
+        public required DireccionRequest Direccion { get; set; }
     }
 }

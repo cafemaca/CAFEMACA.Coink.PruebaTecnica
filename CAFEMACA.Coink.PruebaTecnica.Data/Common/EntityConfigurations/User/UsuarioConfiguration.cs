@@ -12,10 +12,9 @@
 //  </copyright>
 //
 
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
 using CAFEMACA.Coink.PruebaTecnica.Domain.Entities.User;
-using CAFEMACA.Coink.PruebaTecnica.Domain.ValueObjects.User;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CAFEMACA.Coink.PruebaTecnica.Data.Common.EntityConfigurations.User
 {
@@ -36,7 +35,7 @@ namespace CAFEMACA.Coink.PruebaTecnica.Data.Common.EntityConfigurations.User
                 .Property(p => p.DireccionName)
                 .IsRequired();
             builder.OwnsOne(p => p.Direccion)
-                .Property(p => p.IdMunicipio)
+                .Property(p => p.Municipioid)
                 .IsRequired();
 
             builder.Property(p => p.CreatedAtUtc)

@@ -36,35 +36,35 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IUsuarioRepository _paisRepository;
+        private readonly IUsuarioRepository _usuarioRepository;
         private readonly IValidator<UsuarioCreateRequest> _createValidator;
         private readonly IValidator<UsuarioUpdateRequest> _updateValidator;
 
         public UsuarioServices(ILogger<UsuarioServices> logger
             , IMapper mapper
             , IUnitOfWork unitOfWork
-            , IUsuarioRepository paisRepository
+            , IUsuarioRepository usuarioRepository
             , IValidator<UsuarioCreateRequest> createValidator
             , IValidator<UsuarioUpdateRequest> updateValidator)
         {
             _mapper = mapper;
             _unitOfWork = unitOfWork;
-            _paisRepository = paisRepository ?? throw new ArgumentNullException(nameof(paisRepository));
+            _usuarioRepository = usuarioRepository ?? throw new ArgumentNullException(nameof(usuarioRepository));
             _createValidator = createValidator;
             _updateValidator = updateValidator;
         }
 
-        public async Task<Result<UsuarioResponse?, IEnumerable<DomainError>>> CreateUsuarioAsync(UsuarioCreateRequest paisRequest, CancellationToken cancellationToken)
+        public async Task<Result<UsuarioResponse?, IEnumerable<DomainError>>> CreateUsuarioAsync(UsuarioCreateRequest usuarioRequest, CancellationToken cancellationToken)
         {
-            ValidationResult result = await _createValidator.ValidateAsync(paisRequest, cancellationToken).ConfigureAwait(false);
+            ValidationResult result = await _createValidator.ValidateAsync(usuarioRequest, cancellationToken).ConfigureAwait(false);
             if (result.IsValid)
             {
-                Usuario pais = _mapper.Map<Usuario>(paisRequest);
+                Usuario usuario = _mapper.Map<Usuario>(usuarioRequest);
 
-                await _paisRepository.InsertAsync(pais, cancellationToken).ConfigureAwait(false);
+                await _usuarioRepository.InsertAsync(usuario, cancellationToken).ConfigureAwait(false);
                 await _unitOfWork.SaveChangesAsync(cancellationToken).ConfigureAwait(false); // save the changes to the database
 
-                return _mapper.Map<UsuarioResponse>(pais);
+                return _mapper.Map<UsuarioResponse>(usuario);
             }
             else
             {
@@ -74,10 +74,10 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
 
         public async Task<Result<bool, DomainError>> DeleteUsuarioAsync(string id, CancellationToken cancellationToken)
         {
-            Usuario? pais = await _paisRepository.GetAsync(id, cancellationToken).ConfigureAwait(false);
-            if (pais != null)
+            Usuario? usuario = await _usuarioRepository.GetAsync(id, cancellationToken).ConfigureAwait(false);
+            if (usuario != null)
             {
-                await _paisRepository.DeleteAsync(id, cancellationToken).ConfigureAwait(false);
+                await _usuarioRepository.DeleteAsync(id, cancellationToken).ConfigureAwait(false);
                 await _unitOfWork.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
                 return true;
@@ -90,8 +90,8 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
 
         public async Task<Result<IEnumerable<UsuarioResponse>, DomainError>> SelectAllUsuarios(CancellationToken cancellationToken)
         {
-            var paiss = (await _paisRepository.GetAllAsync(cancellationToken).ConfigureAwait(false)).ToList();
-            return _mapper.Map<List<UsuarioResponse>>(paiss);
+            var usuarios = (await _usuarioRepository.GetAllAsync(cancellationToken).ConfigureAwait(false)).ToList();
+            return _mapper.Map<List<UsuarioResponse>>(usuarios);
         }
 
         public async Task<Result<PagedList<UsuarioResponse>, DomainError>> SelectAllUsuarios(SearchQueryParameters searchQueryParameters, CancellationToken cancellationToken)
@@ -122,16 +122,16 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
                 sorts = CustomExpressionFilter<Usuario>.CustomSort(columnSorting);
             }
 
-            PagedList<Usuario> paiss = (await _paisRepository.GetAllAsync(new UsuarioSpecificationQuery(filters, sorts), searchQueryParameters.PageIndex, searchQueryParameters.PageSize, cancellationToken));
-            return _mapper.Map<PagedList<UsuarioResponse>>(paiss);
+            PagedList<Usuario> usuarios = (await _usuarioRepository.GetAllAsync(new UsuarioSpecificationQuery(filters, sorts), searchQueryParameters.PageIndex, searchQueryParameters.PageSize, cancellationToken));
+            return _mapper.Map<PagedList<UsuarioResponse>>(usuarios);
         }
 
         public async Task<Result<UsuarioResponse?, DomainError>> SelectUsuarioByIdAsync(string id, CancellationToken cancellationToken)
         {
-            Usuario? pais = await _paisRepository.GetAsync(id, cancellationToken).ConfigureAwait(false);
-            if (pais != null)
+            Usuario? usuario = await _usuarioRepository.GetAsync(id, cancellationToken).ConfigureAwait(false);
+            if (usuario != null)
             {
-                return _mapper.Map<UsuarioResponse>(pais);
+                return _mapper.Map<UsuarioResponse>(usuario);
             }
             else
             {
@@ -139,18 +139,18 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
             }
         }
 
-        public async Task<Result<bool, IEnumerable<DomainError>>> UpdateAsync(string id, UsuarioUpdateRequest paisRequest, CancellationToken cancellationToken)
+        public async Task<Result<bool, IEnumerable<DomainError>>> UpdateAsync(string id, UsuarioUpdateRequest usuarioRequest, CancellationToken cancellationToken)
         {
-            ValidationResult result = await _updateValidator.ValidateAsync(paisRequest, cancellationToken).ConfigureAwait(false);
+            ValidationResult result = await _updateValidator.ValidateAsync(usuarioRequest, cancellationToken).ConfigureAwait(false);
             if (result.IsValid)
             {
-                Usuario? pais = await _paisRepository.GetAsync(id, cancellationToken).ConfigureAwait(false);
-                if (pais != null)
+                Usuario? usuario = await _usuarioRepository.GetAsync(id, cancellationToken).ConfigureAwait(false);
+                if (usuario != null)
                 {
-                    _mapper.Map<UsuarioUpdateRequest, Usuario>(paisRequest, pais);
-                    pais.Id = id;
+                    _mapper.Map<UsuarioUpdateRequest, Usuario>(usuarioRequest, usuario);
+                    usuario.Id = id;
 
-                    await _paisRepository.UpdateAsync(pais, cancellationToken).ConfigureAwait(false);
+                    await _usuarioRepository.UpdateAsync(usuario, cancellationToken).ConfigureAwait(false);
                     await _unitOfWork.SaveChangesAsync(cancellationToken);
 
                     return true;
