@@ -1,22 +1,27 @@
-# Project Title
+# Prueba Técnica COINK
 
-Simple overview of use/purpose.
+El propósito de este proyecto es la realización de la prueba técnica planteada por COINK como parte del proceso de selección para el cargo de Desarrollador BackEnd.
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+La prueba técnica consite en la evaluación de dos partes: Conocimientos de Base de datos relacionales y desarrollo en C#.
 
-## Getting Started
+Se debe implementar servicios web api rest para la administración de las entidades: Pais, Departamento, Municipio y Usuario.
 
-### Dependencies
+## Presentación
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+### Dependencias
 
-### Installing
+* .NET Framework 8.0.
+* Entity Framework 8.0
+* Npgsql.EntityFrameworkCore.PostgreSQL 8.0
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+### Instalación
+
+* Para el desarrollo de esta prueba, se instaló Postgres 17.0, es menester tener una versió instalada de postgres en un servidor determiando
+* Descargar el código en el lugar deseado.
+* Una vez descargado el código, sedebe proceder a abrir la solución CAFEMACA.Coink.PruebaTecnica.sln
+* abierta la solución, se debe modificar el string de conexión a la base de datos deseada. esto se realiza en el archivo appsettings.json y la entrada CAFEMACA.Coink.PruebaTecnicaDbConn
 
 ### Executing program
 
@@ -35,10 +40,11 @@ command to run if program contains helper info
 
 ## Authors
 
-Contributors names and contact info
+Desarrollador
 
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+Carlos Fernando Malagón Cano  
+[cmalagon@uniandes.edu.co](mailto:cmalagon@uniandes.edu.co)
+LinkedIn: [https://www.linkedin.com/in/cmalagon/](https://www.linkedin.com/in/cmalagon/)
 
 ## Version History
 
@@ -52,11 +58,10 @@ ex. [@DomPizzie](https://twitter.com/dompizzie)
 
 This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
 
-## Acknowledgments
+## Conocimientos
 
-Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+Para el desarrollo de este proyecto se utiliz162
+* La solución se plantea bajo el manejo del concepto de CLEAN ARCHITECTURE, utilizando un template de Visual Studio desarrollado por el propio autor de este desarrollo de la prueba técnica.
+* Manejo de Patreones de Desarrollo como: Options Pattern, Result Pattern, Repository Patter, UnitOfWork Pattern
+* Como buenas prácticas igualmente se maneja procesos como: Health Check, Logging con Serilog
+* Como motor de base de datos se utiliza POSTGRES
