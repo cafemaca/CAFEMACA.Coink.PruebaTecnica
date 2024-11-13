@@ -1,62 +1,66 @@
-# Project Title
+# Prueba Técnica COINK
 
-Simple overview of use/purpose.
+El propósito de este proyecto es la realización de la prueba técnica planteada por COINK como parte del proceso de selección para el cargo de Desarrollador BackEnd.
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+La prueba técnica consite en la evaluación de dos partes: Conocimientos de Base de datos relacionales y desarrollo en C#.
 
-## Getting Started
+Se debe implementar servicios web api rest para la administración de las entidades: Pais, Departamento, Municipio y Usuario.
 
-### Dependencies
+## Presentación
+Para la presentación de la solución se tienen los requerimeintos solicitados:
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+### Base de Datos
+La base de datos construída para la solución a nivel de tablas, se presenta el siguiente modelo enitdad/relación:
+![Modelo E/R](/images/CoinkDB.png)
 
-### Installing
+El script de creación de la base de datos y sus respectivas tablas se puede apreciar en: [Script Creación de base de datos Coink](ScriptsDB/ScriptCreateCoinkDB.sql)
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+### Codificación
+Los servicios Web API REST se han implementado en .NET Framework 8.0 y con el lenguaje de programación C#.
 
-### Executing program
+Estos servicios han sido documentados bajo Swagger para su facil uso en pruebas funcionales y documentación de los mismos:
 
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
+![Documentación Swagger de los Servicios implementados](/images/SwaggerServicios.png)
 
-## Help
 
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
 
-## Authors
+### Dependencias
+* .NET Framework 8.0.
+* Entity Framework 8.0
+* Npgsql.EntityFrameworkCore.PostgreSQL 8.0
 
-Contributors names and contact info
+### Instalación
 
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+* Para el desarrollo de esta prueba, se instaló Postgres 17.0, es menester tener una versió instalada de postgres en un servidor determiando
+* Descargar el código en el lugar deseado.
+* Una vez descargado el código, sedebe proceder a abrir la solución CAFEMACA.Coink.PruebaTecnica.sln
+* abierta la solución, se debe modificar el string de conexión a la base de datos deseada. esto se realiza en el archivo appsettings.json y la entrada CAFEMACA.Coink.PruebaTecnicaDbConn
 
-## Version History
+### Ejecución del servicio Web Api Rest
 
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
-* 0.1
-    * Initial Release
+* Desde Visual Studio 2022 o Visual Studio Code se puede realizar su ejecución
+* Como en el desarrollo de esta prueba técnica se ha utilizado Entity Framework, la solución ha implementado que si se ejecuta por primera vez, este crea la basde de datos y sus respectivas tablas. Es decir, no es necesario previamente ejecurtar script de creación.
 
-## License
+## Autores
 
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+Desarrollador
 
-## Acknowledgments
+Carlos Fernando Malagón Cano  
+[cmalagon@uniandes.edu.co](mailto:cmalagon@uniandes.edu.co)
+LinkedIn: [https://www.linkedin.com/in/cmalagon/](https://www.linkedin.com/in/cmalagon/)
 
-Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+## Licencia
+
+Esta solución es parte del cumplimiento de la prueba técnica propuesta para el cargo de Desarrollador BackEnd propuesto por Coink.
+Por ende, está prohibida su utilización y reproducción para otros fines diferentes al planteado en esta prueba técnica.
+
+## Conocimientos
+
+Para el desarrollo de este proyecto se utilizó:
+* La solución se plantea bajo el manejo del concepto de CLEAN ARCHITECTURE, utilizando un template de Visual Studio desarrollado por el propio autor de este desarrollo de la prueba técnica.
+* Manejo de Patrones de Desarrollo como: Options Pattern, Result Pattern, Repository Patter, UnitOfWork Pattern
+* Los diferentes servicios implementados poseen el manejo básico de MemoryCache para un mejor tiempo de respuesta de los mismos
+* Como buenas prácticas igualmente se maneja procesos como: Health Check, Logging con Serilog
+* Como motor de base de datos se utiliza POSTGRES
