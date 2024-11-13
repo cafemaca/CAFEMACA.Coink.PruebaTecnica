@@ -95,7 +95,7 @@ namespace CAFEMACA.Coink.PruebaTecnica.Api.Controllers.User
         }
 
         /// <summary>
-        /// Get all usuarioes
+        /// Get all usuarios
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
@@ -108,9 +108,9 @@ namespace CAFEMACA.Coink.PruebaTecnica.Api.Controllers.User
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            var usuarioesResult = await _usuarioServices.SelectAllUsuarios(cancellationToken);
+            var usuariosResult = await _usuarioServices.SelectAllUsuarios(cancellationToken);
 
-            return usuarioesResult.Match<IActionResult>(
+            return usuariosResult.Match<IActionResult>(
                 m => Ok(m),
                 fail => NotFound(fail)
                 );
@@ -135,16 +135,16 @@ namespace CAFEMACA.Coink.PruebaTecnica.Api.Controllers.User
             if (searchQueryParameters.PageIndex <= 0 || searchQueryParameters.PageSize <= 0)
                 return BadRequest(ApplicationErrors.ValidPropertiesPage(searchQueryParameters.PageIndex, searchQueryParameters.PageSize));
 
-            var usuarioesResult = await _usuarioServices.SelectAllUsuarios(searchQueryParameters, cancellationToken);
+            var usuariosResult = await _usuarioServices.SelectAllUsuarios(searchQueryParameters, cancellationToken);
 
             // Add pagination metadata to headers
-            var pagedItems = usuarioesResult.Match<PagedList<UsuarioResponse>>(
+            var pagedItems = usuariosResult.Match<PagedList<UsuarioResponse>>(
                 m => m,
                 fail => null
             );
             this.AddPaginationMetadata(pagedItems, searchQueryParameters);
 
-            return usuarioesResult.Match<IActionResult>(
+            return usuariosResult.Match<IActionResult>(
                 m => Ok(m.Items),
                 fail => NotFound(fail)
                 );
