@@ -23,6 +23,8 @@ namespace CAFEMACA.Coink.PruebaTecnica.Data.Common.EntityConfigurations.User
         public void Configure(EntityTypeBuilder<Usuario> builder)
         {
 
+            builder.ToTable(nameof(Usuario));
+
             builder.Property(x => x.Id)
                 .HasMaxLength(50)
                 .IsRequired();

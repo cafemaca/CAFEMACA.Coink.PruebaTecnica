@@ -23,6 +23,8 @@ namespace CAFEMACA.Coink.PruebaTecnica.Data.Common.EntityConfigurations.Location
         public void Configure(EntityTypeBuilder<Departamento> builder)
         {
 
+            builder.ToTable(nameof(Departamento));
+
             builder.Property(x => x.Id)
                 .HasMaxLength(4)
                 .IsRequired();
