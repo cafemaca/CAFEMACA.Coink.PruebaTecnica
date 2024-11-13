@@ -15,6 +15,8 @@ Para la presentación de la solución se tienen los requerimeintos solicitados:
 La base de datos construída para la solución a nivel de tablas, se presenta el siguiente modelo enitdad/relación:
 ![Modelo E/R](/images/CoinkDB.png)
 
+El script de creación de la base de datos y sus respectivas tablas se puede apreciar en: [Script Creación de base de datos Coink](/)
+
 ### Dependencias
 * .NET Framework 8.0.
 * Entity Framework 8.0
