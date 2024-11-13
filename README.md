@@ -17,6 +17,15 @@ La base de datos construída para la solución a nivel de tablas, se presenta el
 
 El script de creación de la base de datos y sus respectivas tablas se puede apreciar en: [Script Creación de base de datos Coink](ScriptsDB/ScriptCreateCoinkDB.sql)
 
+### Codificación
+Los servicios Web API REST se han implementado en .NET Framework 8.0 y con el lenguaje de programación C#.
+
+Estos servicios han sido documentados bajo Swagger para su facil uso en pruebas funcionales y documentación de los mismos:
+
+![Documentación Swagger de los Servicios implementados](/images/SwaggerServicios.png)
+
+
+
 ### Dependencias
 * .NET Framework 8.0.
 * Entity Framework 8.0
