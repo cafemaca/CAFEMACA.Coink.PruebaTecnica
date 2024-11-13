@@ -24,7 +24,7 @@ namespace CAFEMACA.Coink.PruebaTecnica.Data.Common.EntityConfigurations.Location
         {
 
             builder.Property(x => x.Id)
-                .HasMaxLength(6)
+                .HasMaxLength(12)
                 .IsRequired();
 
             builder.Property(p => p.Name)
