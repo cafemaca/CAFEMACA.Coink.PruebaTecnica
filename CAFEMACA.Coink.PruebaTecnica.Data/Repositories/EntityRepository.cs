@@ -66,9 +66,9 @@ namespace CAFEMACA.Coink.PruebaTecnica.Data.Repositories
         /// </summary>
         /// <param name="specification">specification</param>
         /// <returns>List of all entities</returns>
-        public Task<IReadOnlyList<TEntity>> GetAllAsync(ISpecificationQuery<TEntity> specification, CancellationToken cancellationToken)
+        public async Task<IReadOnlyList<TEntity>> GetAllAsync(ISpecificationQuery<TEntity> specification, CancellationToken cancellationToken)
         {
-            return Task.Run(() => (IReadOnlyList<TEntity>)SpecificationQueryBuilder.GetQuery(_dbSet, specification).AsEnumerable());
+            return (IReadOnlyList<TEntity>) await SpecificationQueryBuilder.GetQuery(_dbSet, specification).ToListAsync(cancellationToken).ConfigureAwait(false);
         }
 
         public async Task DeleteAsync(TPrimaryKey id, CancellationToken cancellationToken)

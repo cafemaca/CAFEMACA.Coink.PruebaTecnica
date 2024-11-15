@@ -22,6 +22,6 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.Dtos.Location
 
         public string Name { get; set; } = string.Empty;
 
-        public Departamento Departamento { get; set; }
+        public DepartamentoResponse Departamento { get; set; }
     }
 }

@@ -25,7 +25,7 @@ namespace CAFEMACA.Coink.PruebaTecnica.Domain.Entities.Location
 
         public string DepartamentoId { get; set; }
 
-        public Departamento Departamento { get; set; }
+        public virtual Departamento Departamento { get; set; }
 
         #region Auditable Entity
         public DateTime CreatedAtUtc { get; set; }

@@ -36,36 +36,36 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IMunicipioRepository _paisRepository;
+        private readonly IMunicipioRepository _municipioRepository;
         private readonly IValidator<MunicipioCreateRequest> _createValidator;
         private readonly IValidator<MunicipioUpdateRequest> _updateValidator;
 
         public MunicipioServices(ILogger<MunicipioServices> logger
             , IMapper mapper
             , IUnitOfWork unitOfWork
-            , IMunicipioRepository paisRepository
+            , IMunicipioRepository municipioRepository
             , IValidator<MunicipioCreateRequest> createValidator
             , IValidator<MunicipioUpdateRequest> updateValidator
             )
         {
             _mapper = mapper;
             _unitOfWork = unitOfWork;
-            _paisRepository = paisRepository ?? throw new ArgumentNullException(nameof(paisRepository));
+            _municipioRepository = municipioRepository ?? throw new ArgumentNullException(nameof(municipioRepository));
             _createValidator = createValidator;
             _updateValidator = updateValidator;
         }
 
-        public async Task<Result<MunicipioResponse?, IEnumerable<DomainError>>> CreateMunicipioAsync(MunicipioCreateRequest paisRequest, CancellationToken cancellationToken)
+        public async Task<Result<MunicipioResponse?, IEnumerable<DomainError>>> CreateMunicipioAsync(MunicipioCreateRequest municipioRequest, CancellationToken cancellationToken)
         {
-            ValidationResult result = await _createValidator.ValidateAsync(paisRequest, cancellationToken).ConfigureAwait(false);
+            ValidationResult result = await _createValidator.ValidateAsync(municipioRequest, cancellationToken).ConfigureAwait(false);
             if (result.IsValid)
             {
-                Municipio pais = _mapper.Map<Municipio>(paisRequest);
+                Municipio municipio = _mapper.Map<Municipio>(municipioRequest);
 
-                await _paisRepository.InsertAsync(pais, cancellationToken).ConfigureAwait(false);
+                await _municipioRepository.InsertAsync(municipio, cancellationToken).ConfigureAwait(false);
                 await _unitOfWork.SaveChangesAsync(cancellationToken).ConfigureAwait(false); // save the changes to the database
 
-                return _mapper.Map<MunicipioResponse>(pais);
+                return _mapper.Map<MunicipioResponse>(municipio);
             }
             else
             {
@@ -75,10 +75,10 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
 
         public async Task<Result<bool, DomainError>> DeleteMunicipioAsync(string id, CancellationToken cancellationToken)
         {
-            Municipio? pais = await _paisRepository.GetAsync(id, cancellationToken).ConfigureAwait(false);
-            if (pais != null)
+            Municipio? municipio = await _municipioRepository.GetAsync(id, cancellationToken).ConfigureAwait(false);
+            if (municipio != null)
             {
-                await _paisRepository.DeleteAsync(id, cancellationToken).ConfigureAwait(false);
+                await _municipioRepository.DeleteAsync(id, cancellationToken).ConfigureAwait(false);
                 await _unitOfWork.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
                 return true;
@@ -91,8 +91,10 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
 
         public async Task<Result<IEnumerable<MunicipioResponse>, DomainError>> SelectAllMunicipios(CancellationToken cancellationToken)
         {
-            var paiss = (await _paisRepository.GetAllAsync(cancellationToken).ConfigureAwait(false)).ToList();
-            return _mapper.Map<List<MunicipioResponse>>(paiss);
+            //var municipioes = (await _municipioRepository.GetAllAsync(cancellationToken).ConfigureAwait(false)).ToList();
+            var municipioes = (await _municipioRepository.GetAllAsync(new MunicipioSpecificationQuery(), cancellationToken).ConfigureAwait(false)).ToList();
+            
+            return _mapper.Map<List<MunicipioResponse>>(municipioes);
         }
 
         public async Task<Result<PagedList<MunicipioResponse>, DomainError>> SelectAllMunicipios(SearchQueryParameters searchQueryParameters, CancellationToken cancellationToken)
@@ -123,16 +125,16 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
                 sorts = CustomExpressionFilter<Municipio>.CustomSort(columnSorting);
             }
 
-            PagedList<Municipio> paiss = (await _paisRepository.GetAllAsync(new MunicipioSpecificationQuery(filters, sorts), searchQueryParameters.PageIndex, searchQueryParameters.PageSize, cancellationToken));
-            return _mapper.Map<PagedList<MunicipioResponse>>(paiss);
+            PagedList<Municipio> municipioes = (await _municipioRepository.GetAllAsync(new MunicipioSpecificationQuery(filters, sorts), searchQueryParameters.PageIndex, searchQueryParameters.PageSize, cancellationToken));
+            return _mapper.Map<PagedList<MunicipioResponse>>(municipioes);
         }
 
         public async Task<Result<MunicipioResponse?, DomainError>> SelectMunicipioByIdAsync(string id, CancellationToken cancellationToken)
         {
-            Municipio? pais = await _paisRepository.GetAsync(id, cancellationToken).ConfigureAwait(false);
-            if (pais != null)
+            Municipio? municipio = await _municipioRepository.FirstOrDefaultAsync(new MunicipioSpecificationQuery(id), cancellationToken).ConfigureAwait(false);
+            if (municipio != null)
             {
-                return _mapper.Map<MunicipioResponse>(pais);
+                return _mapper.Map<MunicipioResponse>(municipio);
             }
             else
             {
@@ -140,18 +142,18 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
             }
         }
 
-        public async Task<Result<bool, IEnumerable<DomainError>>> UpdateAsync(string id, MunicipioUpdateRequest paisRequest, CancellationToken cancellationToken)
+        public async Task<Result<bool, IEnumerable<DomainError>>> UpdateAsync(string id, MunicipioUpdateRequest municipioRequest, CancellationToken cancellationToken)
         {
-            ValidationResult result = await _updateValidator.ValidateAsync(paisRequest, cancellationToken).ConfigureAwait(false);
+            ValidationResult result = await _updateValidator.ValidateAsync(municipioRequest, cancellationToken).ConfigureAwait(false);
             if (result.IsValid)
             {
-                Municipio? pais = await _paisRepository.GetAsync(id, cancellationToken).ConfigureAwait(false);
-                if (pais != null)
+                Municipio? municipio = await _municipioRepository.GetAsync(id, cancellationToken).ConfigureAwait(false);
+                if (municipio != null)
                 {
-                    _mapper.Map<MunicipioUpdateRequest, Municipio>(paisRequest, pais);
-                    pais.Id = id;
+                    _mapper.Map<MunicipioUpdateRequest, Municipio>(municipioRequest, municipio);
+                    municipio.Id = id;
 
-                    await _paisRepository.UpdateAsync(pais, cancellationToken).ConfigureAwait(false);
+                    await _municipioRepository.UpdateAsync(municipio, cancellationToken).ConfigureAwait(false);
                     await _unitOfWork.SaveChangesAsync(cancellationToken);
 
                     return true;

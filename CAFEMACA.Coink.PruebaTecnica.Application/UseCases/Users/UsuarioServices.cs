@@ -90,7 +90,7 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
 
         public async Task<Result<IEnumerable<UsuarioResponse>, DomainError>> SelectAllUsuarios(CancellationToken cancellationToken)
         {
-            var usuarios = (await _usuarioRepository.GetAllAsync(cancellationToken).ConfigureAwait(false)).ToList();
+            var usuarios = (await _usuarioRepository.GetAllAsync(new UsuarioSpecificationQuery(), cancellationToken).ConfigureAwait(false)).ToList();
             return _mapper.Map<List<UsuarioResponse>>(usuarios);
         }
 
@@ -128,7 +128,7 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
 
         public async Task<Result<UsuarioResponse?, DomainError>> SelectUsuarioByIdAsync(string id, CancellationToken cancellationToken)
         {
-            Usuario? usuario = await _usuarioRepository.GetAsync(id, cancellationToken).ConfigureAwait(false);
+            Usuario? usuario = await _usuarioRepository.FirstOrDefaultAsync(new UsuarioSpecificationQuery(id), cancellationToken).ConfigureAwait(false);
             if (usuario != null)
             {
                 return _mapper.Map<UsuarioResponse>(usuario);

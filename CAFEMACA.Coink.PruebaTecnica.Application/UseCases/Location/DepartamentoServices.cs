@@ -91,7 +91,8 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
 
         public async Task<Result<IEnumerable<DepartamentoResponse>, DomainError>> SelectAllDepartamentos(CancellationToken cancellationToken)
         {
-            var departamentos = (await _departamentoRepository.GetAllAsync(cancellationToken).ConfigureAwait(false)).ToList();
+            //var departamentos = (await _departamentoRepository.GetAllAsync(cancellationToken).ConfigureAwait(false)).ToList();
+            var departamentos = (await _departamentoRepository.GetAllAsync(new DepartamentoSpecificationQuery(), cancellationToken).ConfigureAwait(false)).ToList();
             return _mapper.Map<List<DepartamentoResponse>>(departamentos);
         }
 
@@ -130,8 +131,7 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
         public async Task<Result<DepartamentoResponse?, DomainError>> SelectDepartamentoByIdAsync(string id, CancellationToken cancellationToken)
         {
             DepartamentoSpecificationQuery departamentoSpecificationQuery = new DepartamentoSpecificationQuery(id);
-            //Departamento? departamento = await _departamentoRepository.GetAsync(id, cancellationToken).ConfigureAwait(false);
-            Departamento? departamento = await _departamentoRepository.FirstAsync(departamentoSpecificationQuery, cancellationToken).ConfigureAwait(false);
+            Departamento? departamento = await _departamentoRepository.FirstOrDefaultAsync(departamentoSpecificationQuery, cancellationToken).ConfigureAwait(false);
             if (departamento != null)
             {
                 return _mapper.Map<DepartamentoResponse>(departamento);

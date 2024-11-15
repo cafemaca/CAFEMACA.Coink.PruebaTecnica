@@ -90,8 +90,8 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
 
         public async Task<Result<IEnumerable<PaisResponse>, DomainError>> SelectAllPaises(CancellationToken cancellationToken)
         {
-            var paiss = (await _paisRepository.GetAllAsync(cancellationToken).ConfigureAwait(false)).ToList();
-            return _mapper.Map<List<PaisResponse>>(paiss);
+            var paises = (await _paisRepository.GetAllAsync(cancellationToken).ConfigureAwait(false)).ToList();
+            return _mapper.Map<List<PaisResponse>>(paises);
         }
 
         public async Task<Result<PagedList<PaisResponse>, DomainError>> SelectAllPaises(SearchQueryParameters searchQueryParameters, CancellationToken cancellationToken)
@@ -122,8 +122,8 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.UseCases.Location
                 sorts = CustomExpressionFilter<Pais>.CustomSort(columnSorting);
             }
 
-            PagedList<Pais> paiss = (await _paisRepository.GetAllAsync(new PaisSpecificationQuery(filters, sorts), searchQueryParameters.PageIndex, searchQueryParameters.PageSize, cancellationToken));
-            return _mapper.Map<PagedList<PaisResponse>>(paiss);
+            PagedList<Pais> paises = (await _paisRepository.GetAllAsync(new PaisSpecificationQuery(filters, sorts), searchQueryParameters.PageIndex, searchQueryParameters.PageSize, cancellationToken));
+            return _mapper.Map<PagedList<PaisResponse>>(paises);
         }
 
         public async Task<Result<PaisResponse?, DomainError>> SelectPaisByIdAsync(string id, CancellationToken cancellationToken)

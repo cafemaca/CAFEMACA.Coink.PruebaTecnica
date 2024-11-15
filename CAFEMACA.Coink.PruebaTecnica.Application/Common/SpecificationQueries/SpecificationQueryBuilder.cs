@@ -68,7 +68,6 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.SpecificationQueries
             {
                 return query.AsQueryable<TEntity>();
             }
-
             return querySort.AsQueryable<TEntity>();
         }
     }

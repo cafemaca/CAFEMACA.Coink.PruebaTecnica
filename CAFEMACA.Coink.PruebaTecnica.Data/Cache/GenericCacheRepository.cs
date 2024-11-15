@@ -130,7 +130,6 @@ namespace CAFEMACA.Coink.PruebaTecnica.Data.Cache
                 SetData<IReadOnlyList<TEntity>>(key, list);
             }
             return list;
-
         }
 
         public async Task<IReadOnlyList<TEntity>> GetAllAsync(ISpecificationQuery<TEntity> specification, CancellationToken cancellationToken)
