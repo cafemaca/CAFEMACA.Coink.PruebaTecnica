@@ -31,6 +31,7 @@ namespace CAFEMACA.Coink.PruebaTecnica.Application.Common.SpecificationQueries.U
 
         public UsuarioSpecificationQuery(Expression<Func<Usuario, bool>> criteria, List<SpecificationSort<Usuario>> orderby) : base(criteria)
         {
+            AddInclude(u => u.Direccion.Municipio.Departamento.Pais);
             OrderBy = orderby;
         }
     }
